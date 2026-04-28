@@ -13,7 +13,7 @@
           <h2 class="section-title mb-5">Parlons de<br/>votre projet</h2>
           <p class="text-gray-500 text-sm leading-loose mb-10">
             Vous avez un projet en Île-de-France ? Remplissez le formulaire ou
-            contactez directement — réponse sous 48h, devis gratuit sans engagement.
+            contactez directement, devis gratuit sans engagement.
           </p>
 
           <div class="flex flex-col gap-4">
@@ -109,7 +109,7 @@
             </button>
 
             <p class="text-[11px] text-gray-400 text-center leading-relaxed">
-              Réponse sous 48h · Devis gratuit sans engagement<br/>
+              Devis gratuit sans engagement<br/>
               Données confidentielles (RGPD)
             </p>
           </form>
