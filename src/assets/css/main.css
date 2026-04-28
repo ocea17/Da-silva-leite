@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Variables CSS globales (charte graphique Da Silva Leite) ─── */
+@layer base {
+  :root {
+    --vert-foret:  #1D3C24;
+    --vert-vif:    #6DC319;
+    --vert-moyen:  #90C896;
+    --vert-clair:  #E8F5EB;
+    --transition:  0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-poppins text-gray-800 antialiased;
+  }
+
+  /* Titres display → Bebas Neue */
+  h1, h2, h3 {
+    @apply font-display;
+  }
+}
+
+/* ─── Composants réutilisables via @layer components ─── */
+@layer components {
+  /* Bouton principal vert vif */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg
+           bg-brand-vif text-white font-semibold text-sm
+           transition-all duration-300
+           hover:bg-green-600 hover:-translate-y-0.5
+           hover:shadow-lg hover:shadow-brand-vif/30;
+  }
+
+  /* Bouton outline blanc (pour fond sombre) */
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg
+           border border-white/40 text-white font-semibold text-sm
+           transition-all duration-300
+           hover:bg-white/10 hover:border-white;
+  }
+
+  /* Label de section (petit texte vert + trait) */
+  .section-label {
+    @apply flex items-center gap-2 text-xs font-semibold
+           tracking-widest uppercase text-brand-vif;
+  }
+  .section-label::before {
+    content: '';
+    @apply block w-6 h-0.5 bg-brand-vif rounded-full;
+  }
+
+  /* Titre de section display */
+  .section-title {
+    @apply font-display text-4xl md:text-5xl text-brand-foret leading-tight;
+  }
+}
