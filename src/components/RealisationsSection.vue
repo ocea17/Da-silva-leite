@@ -1,9 +1,9 @@
 <template>
-  <section id="realisations" class="bg-brand-foret py-24">
-    <div class="max-w-6xl mx-auto px-6">
+  <section id="realisations" class="bg-brand-foret py-16 sm:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
 
       <!-- Header -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-14">
         <div v-motion :initial="{ opacity:0, y:24 }" :visibleOnce="{ opacity:1, y:0, transition:{ duration:600 } }">
           <div class="section-label mb-3" style="color:#6DC319">
             <span style="background:#6DC319" class="block w-6 h-0.5 rounded-full mr-2 inline-block align-middle"></span>
@@ -30,6 +30,7 @@
           class="group relative rounded-2xl overflow-hidden cursor-pointer"
           @mouseenter="real.showAfter = true"
           @mouseleave="real.showAfter = false"
+          @click="real.showAfter = !real.showAfter"
         >
           <!-- Image (placeholder coloré) -->
           <div class="aspect-[4/3] relative overflow-hidden">
@@ -81,7 +82,7 @@
           <!-- Hint hover -->
           <div class="absolute top-3 right-3 bg-black/40 text-white/70 text-[10px] px-2 py-1 rounded-full
                       opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-            Survoler pour voir après
+            <span class="hidden sm:inline">Survoler</span><span class="sm:hidden">Toucher</span> pour voir après
           </div>
         </div>
       </div>

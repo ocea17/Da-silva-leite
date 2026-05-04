@@ -1,11 +1,11 @@
 <template>
-  <footer class="bg-[#111c13] pt-12 pb-6">
-    <div class="max-w-6xl mx-auto px-6">
+  <footer class="bg-[#111c13] pt-10 sm:pt-12 pb-6">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
 
       <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-white/8">
         <!-- Logo plus grand -->
         <RouterLink to="/">
-          <img :src="logoWhite" alt="Da Silva Leite" class="h-16 w-auto" />
+          <img :src="logoWhite" alt="Da Silva Leite" class="h-12 sm:h-16 w-auto" />
         </RouterLink>
 
         <!-- Liens -->
@@ -32,5 +32,5 @@
 </template>
 
 <script setup>
-import logoWhite from '@/assets/images/loog_secondaire_blanc.svg'
+import logoWhite from '@/assets/images/logo_principale_blanc.svg'
 </script>
