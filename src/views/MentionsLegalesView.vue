@@ -1,43 +1,45 @@
 <template>
   <main>
     <!-- Hero -->
-    <section class="bg-brand-foret pt-36 pb-16">
-      <div class="max-w-3xl mx-auto px-6">
+    <section class="bg-brand-foret pt-24 sm:pt-36 pb-12 sm:pb-16">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6
                     bg-brand-vif/18 border border-brand-vif/40 text-brand-vif text-xs font-semibold tracking-widest uppercase">
           <span class="w-1.5 h-1.5 rounded-full bg-brand-vif" />
           Informations légales
         </div>
-        <h1 class="font-display text-5xl text-white mb-4">Mentions légales</h1>
+        <h1 class="font-display text-3xl sm:text-5xl text-white mb-4">Mentions légales</h1>
         <p class="text-white/50 text-sm">Da Silva Leite — Site vitrine</p>
       </div>
     </section>
 
     <!-- Contenu -->
-    <section class="py-16 bg-white">
-      <div class="max-w-3xl mx-auto px-6">
+    <section class="py-12 sm:py-16 bg-white">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6">
 
         <div class="flex flex-col gap-10">
 
           <!-- Éditeur -->
-          <div class="rounded-2xl border border-gray-100 p-8">
-            <h2 class="font-display text-2xl text-brand-foret mb-6 flex items-center gap-3">
+          <div class="rounded-2xl border border-gray-100 p-5 sm:p-8">
+            <h2 class="font-display text-xl sm:text-2xl text-brand-foret mb-4 sm:mb-6 flex items-center gap-3">
               <span class="w-8 h-8 rounded-full bg-brand-vif flex items-center justify-center text-white text-sm font-bold">1</span>
               Éditeur du site
             </h2>
             <dl class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div v-for="item in editeur" :key="item.label" class="flex flex-col gap-1">
                 <dt class="text-xs font-semibold uppercase tracking-widest text-gray-400">{{ item.label }}</dt>
+                
                 <dd class="text-sm text-brand-foret font-medium">
-                  {{ item.value }}
+                  {{ item.value }}<a v-if="item.link" :href="item.link" target="_blank" rel="noopener noreferrer" class="text-brand-vif hover:underline">{{ item.linkText }}</a>
                 </dd>
               </div>
+              
             </dl>
           </div>
 
           <!-- Hébergeur -->
-          <div class="rounded-2xl border border-gray-100 p-8">
-            <h2 class="font-display text-2xl text-brand-foret mb-6 flex items-center gap-3">
+          <div class="rounded-2xl border border-gray-100 p-5 sm:p-8">
+            <h2 class="font-display text-xl sm:text-2xl text-brand-foret mb-4 sm:mb-6 flex items-center gap-3">
               <span class="w-8 h-8 rounded-full bg-brand-vif flex items-center justify-center text-white text-sm font-bold">2</span>
               Hébergeur
             </h2>
@@ -50,8 +52,8 @@
           </div>
 
           <!-- Propriété intellectuelle -->
-          <div class="rounded-2xl border border-gray-100 p-8">
-            <h2 class="font-display text-2xl text-brand-foret mb-4 flex items-center gap-3">
+          <div class="rounded-2xl border border-gray-100 p-5 sm:p-8">
+            <h2 class="font-display text-xl sm:text-2xl text-brand-foret mb-4 flex items-center gap-3">
               <span class="w-8 h-8 rounded-full bg-brand-vif flex items-center justify-center text-white text-sm font-bold">3</span>
               Propriété intellectuelle
             </h2>
@@ -61,8 +63,8 @@
           </div>
 
           <!-- RGPD -->
-          <div class="rounded-2xl border border-gray-100 p-8">
-            <h2 class="font-display text-2xl text-brand-foret mb-4 flex items-center gap-3">
+          <div class="rounded-2xl border border-gray-100 p-5 sm:p-8">
+            <h2 class="font-display text-xl sm:text-2xl text-brand-foret mb-4 flex items-center gap-3">
               <span class="w-8 h-8 rounded-full bg-brand-vif flex items-center justify-center text-white text-sm font-bold">4</span>
               Données personnelles (RGPD)
             </h2>
@@ -76,8 +78,8 @@
           </div>
 
           <!-- Responsabilité -->
-          <div class="rounded-2xl border border-gray-100 p-8">
-            <h2 class="font-display text-2xl text-brand-foret mb-4 flex items-center gap-3">
+          <div class="rounded-2xl border border-gray-100 p-5 sm:p-8">
+            <h2 class="font-display text-xl sm:text-2xl text-brand-foret mb-4 flex items-center gap-3">
               <span class="w-8 h-8 rounded-full bg-brand-vif flex items-center justify-center text-white text-sm font-bold">5</span>
               Responsabilité
             </h2>
@@ -102,17 +104,14 @@
 import { ArrowLeft } from 'lucide-vue-next'
 
 const editeur = [
-  { label: 'Raison sociale',     value: 'DA SILVA LEITE' },
-  { label: 'Gérant',             value: 'Salomon LEITE' },
-  { label: 'Adresse',            value: 
-    '1 avenue Henry IV, 78710 Rosny-sur-Seine' + '\n' +
-   'Intervention uniquement à domicile – pas d’accueil au siège'
-  
-},
-  { label: 'N° SIRET',           value: '49487511500029' },
-  { label: 'Code APE',           value: '4334Z — Travaux de peinture et vitrerie' },
-  { label: 'E-mail',             value: 'peinture.sld@gmail.com' },
-  { label: 'Téléphone',          value: '06 64 84 16 78' },
+  { label: 'Raison sociale', value: 'DA SILVA LEITE' },
+  { label: 'Gérant',         value: 'Salomon LEITE' },
+  { label: 'Code APE',       value: '4334Z — Travaux de peinture et vitrerie' },
+  { label: 'N° SIRET',       value: '49487511500029' },
+  { label: 'E-mail',         value: 'peinture.sld@gmail.com' },
+  { label: 'Téléphone',      value: '06 64 84 16 78' },
+  { label: 'Adresse',        value: '1 avenue Henry IV, 78710 Rosny-sur-Seine — Intervention uniquement à domicile, pas d’accueil au siège' },
+  { label: 'Développé par',  value: 'Océane Leite — ', linkText: 'oceaneleite.fr', link: 'https://oceaneleite.fr' },
 ]
 
 const hebergeur = [
