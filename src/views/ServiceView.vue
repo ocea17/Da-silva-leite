@@ -47,7 +47,7 @@
         <p v-motion :initial="{ opacity:0 }" :enter="{ opacity:1, transition:{ delay:400, duration:600 } }"
            class="text-white/60 text-sm sm:text-base leading-loose max-w-xl mx-auto mb-8 sm:mb-10">
           Artisan peintre dans les Yvelines depuis 2007, j'interviens chez des particuliers
-          en Île-de-France pour tous vos travaux de peinture, rénovation et décoration.
+          en Île-de-France pour tous vos travaux de peinture, rénovation et aménagement.
         </p>
 
         <!-- CTA -->
@@ -69,16 +69,14 @@
         >
           <!-- Visuel -->
           <div :class="i % 2 === 1 ? 'lg:order-2' : ''">
-            <div class="relative rounded-2xl overflow-hidden aspect-[4/3]" :class="service.bgColor">
-              <div class="absolute inset-0 flex items-center justify-center">
-                <img :src="service.icon" :alt="service.name" class="w-24 sm:w-32 h-24 sm:h-32 brightness-200 opacity-20" />
-              </div>
-              <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6
-                          w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-brand-vif
-                          flex items-center justify-center shadow-xl">
-                <img :src="service.icon" :alt="service.name" class="w-6 h-6 sm:w-9 sm:h-9 brightness-200" />
-              </div>
+            <div class="relative rounded-2xl overflow-hidden aspect-[4/3] group">
+              <img
+                :src="service.img"
+                :alt="service.name"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
             </div>
+            <p class="text-xs text-gray-400 text-center mt-2 italic">{{ service.caption }}</p>
           </div>
 
           <!-- Texte -->
@@ -110,7 +108,7 @@
         <div class="section-label mb-4 justify-center">Zone d'intervention</div>
         <h2 class="section-title mb-5 sm:mb-6">Yvelines &amp; Île-de-France</h2>
         <p class="text-gray-500 text-sm leading-loose mb-6 sm:mb-8">
-          Basé à Rosny-sur-Seine, j'interviens principalement dans les secteurs de Mantes-la-Jolie,
+          Basé dans les Yvelines, j'interviens principalement dans les secteurs de Mantes-la-Jolie,
           Versailles, et plus largement dans tout le département des Yvelines (78) et en Île-de-France.
         </p>
         <div class="flex flex-wrap justify-center gap-2 sm:gap-3">
@@ -138,24 +136,32 @@ import iconAmenagement from '@/assets/images/amenagement.svg'
 
 const services = [
   {
-    slug: 'peinture', name: 'Peinture', icon: iconPeinture, bgColor: 'bg-brand-foret',
-    intro: 'Je prends en charge la préparation des surfaces, l\'application des peintures et la finition, pour un résultat impeccable et durable — intérieur comme extérieur.',
-    prestations: ['Peinture intérieure : murs, plafonds, boiseries', 'Peinture extérieure : façades, volets, portails', 'Pose de papier peint et revêtements décoratifs', 'Enduits décoratifs (béton ciré, stuc, tadelakt)', 'Préparation des supports : enduit, ponçage, impression'],
+    slug: 'peinture', name: 'Peinture',
+    img: '/photo/services/peinture.jpeg',
+    caption: 'Peinture chambres — Rosny-sur-Seine',
+    intro: 'Je prends en charge la préparation des surfaces, l\'application des peintures et la finition, pour un résultat impeccable et soigné — intérieur comme extérieur.',
+    prestations: ['Peinture intérieure : murs, plafonds, boiseries', 'Peinture extérieure : façades, volets, portails', 'Pose de papier peint et revêtements décoratifs', 'Préparation des supports : enduit, ponçage, impression'],
   },
   {
-    slug: 'revetement', name: 'Revêtement', icon: iconRevetement, bgColor: 'bg-teal-800',
-    intro: 'Carrelage, parquet, faïence, sol souple — je vous conseille sur le choix des matériaux et assure une pose soignée dans les règles de l\'art.',
-    prestations: ['Carrelage et faïence (salle de bain, cuisine, séjour)', 'Parquet : pose flottante ou collée', 'Sol vinyle, stratifié, moquette', 'Revêtements muraux décoratifs', 'Ragréage et préparation des sols'],
+    slug: 'revetement', name: 'Revêtement',
+    img: '/photo/services/revetement.jpeg',
+    caption: 'Revêtement de sol — Mantes-la-Jolie',
+    intro: 'Carrelage, parquet, faïence, sol souple ou rigide, moquette — je vous assure une pose soignée dans les règles de l\'art.',
+    prestations: ['Carrelage et faïence (salle de bain, cuisine, séjour)', 'Parquet : pose flottante', 'Sol vinyle, lino, moquette', 'Revêtements muraux décoratifs', 'Ragréage et préparation des sols'],
   },
   {
-    slug: 'ravalement', name: 'Ravalement de façade', icon: iconRavalement, bgColor: 'bg-green-800',
-    intro: 'Expertise et matériaux durables pour redonner vie à vos murs extérieurs. Un ravalement soigné protège votre bien et valorise votre patrimoine.',
-    prestations: ['Ravalement de façade complet', 'Traitement et reprise des fissures', 'Peinture de façade minérale ou organique', 'Enduit de façade : gratté, taloché, à la chaux', 'Nettoyage haute pression et démoussage'],
+    slug: 'ravalement', name: 'Ravalement de façade',
+    img: '/photo/services/ravalement.jpeg',
+    caption: 'Ravalement de façade — Poissy',
+    intro: 'Expertise et matériaux spécialisés pour redonner vie à vos murs extérieurs. Un ravalement soigné protège votre bien et valorise votre patrimoine.',
+    prestations: ['Ravalement de façade complet', 'Traitement et reprise des fissures', 'Peinture de façade minérale ou organique (type pliolite)', 'Nettoyage haute pression et démoussage'],
   },
   {
-    slug: 'amenagement', name: 'Aménagement & décoration', icon: iconAmenagement, bgColor: 'bg-emerald-800',
-    intro: 'Décoration intérieure, agencement, petits travaux de rénovation — pour créer un intérieur qui vous ressemble, fonctionnel et esthétique.',
-    prestations: ['Conseil en décoration intérieure (couleurs, matières)', 'Enduits décoratifs : béton ciré, stuc, chaux', 'Cloisons et faux-plafonds en placo', 'Carrelage décoratif : mosaïque, zellige', 'Petits travaux de rénovation et finitions'],
+    slug: 'amenagement', name: 'Aménagement d\'intérieur',
+    img: '/photo/services/amenagement.jpeg',
+    caption: 'Aménagement d\'intérieur — Les Mureaux',
+    intro: 'Aménagement d\'intérieur, agencement, petits travaux de rénovation — pour créer un intérieur qui vous ressemble, fonctionnel et esthétique.',
+    prestations: ['Pose de placo BA13 ', 'Pose d\'isolation par l\'intérieur', 'Carrelage, faïence', 'Petits travaux de menuiserie et finitions'],
   },
 ]
 
