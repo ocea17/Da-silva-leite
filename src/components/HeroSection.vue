@@ -47,7 +47,7 @@
             class="text-white/65 text-sm sm:text-base leading-loose max-w-md mb-8 sm:mb-10"
           >
             Peinture intérieure &amp; extérieure, revêtements, ravalement de façade
-            et décoration à Mantes-la-Jolie, Versailles et en Île-de-France.
+            dans les Yvelines et alentour.
           </p>
 
           <!-- CTA -->
@@ -93,7 +93,7 @@
          <div class="absolute left-0 top-0 w-[54%] h-[60%] rounded-2xl overflow-hidden
             shadow-2xl group cursor-default">
             <img
-              src="/public/photo/hero/peinture-chambre.jpeg"
+              src="/photo/hero/peinture-chambre.jpeg"
               alt="Peinture intérieure"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
@@ -107,12 +107,12 @@
           <div class="absolute right-0 top-0 w-[42%] h-[30%] rounded-2xl overflow-hidden
                       shadow-xl group cursor-default">
             <img
-              src="/public/photo/hero/escalier.jpeg"
-              alt="Revêtement"
+              src="/photo/hero/escalier.jpeg"
+              alt="Peinture"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-3">
-              <span class="text-white text-xs font-semibold">Revêtement</span>
+              <span class="text-white text-xs font-semibold">Peinture intérieure</span>
             </div>
           </div>
 
@@ -120,12 +120,12 @@
           <div class="absolute right-0 top-[32%] w-[42%] h-[30%] rounded-2xl overflow-hidden
                       shadow-xl group cursor-default">
             <img
-              src="/public/photo/hero/bibliotheque.jpeg"
-              alt="Ravalement"
+              src="/photo/hero/bibliotheque.jpeg"
+              alt="Aménagement intérieur"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-3">
-              <span class="text-white text-xs font-semibold">Ravalement</span>
+              <span class="text-white text-xs font-semibold">Aménagement intérieur</span>
             </div>
           </div>
 
@@ -133,12 +133,12 @@
           <div class="absolute left-0 bottom-0 w-full h-[36%]  rounded-2xl overflow-hidden
                       shadow-xl group cursor-default">
             <img
-              src="/public/photo/hero/exterieur.jpeg"
-              alt="Aménagement & décoration"
+              src="/photo/hero/exterieur.jpeg"
+              alt="Peinture extérieure vitrine"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-4">
-              <span class="text-white text-xs font-semibold">Aménagement & décoration</span>
+              <span class="text-white text-xs font-semibold">Peinture extérieure</span>
             </div>
           </div>
 

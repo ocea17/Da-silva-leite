@@ -52,9 +52,9 @@ import iconRavalement  from '@/assets/images/ravalement.svg'
 import iconAmenagement from '@/assets/images/amenagement.svg'
 
 const services = [
-  { icon: iconPeinture,    name: 'Peinture',    desc: 'Intérieure & extérieure. Murs, plafonds, boiseries, façades — préparation et finition impeccable.' },
-  { icon: iconRevetement,  name: 'Revêtement',  desc: 'Sols et murs : carrelage, parquet, faïence, vinyl, moquette — conseil et pose soignée.' },
-  { icon: iconRavalement,  name: 'Ravalement',  desc: 'Ravalement de façade avec matériaux durables pour redonner vie à vos murs extérieurs.' },
-  { icon: iconAmenagement, name: 'Aménagement', desc: 'Décoration intérieure, enduits décoratifs, béton ciré, stuc — pour un intérieur unique.' },
+  { icon: iconPeinture,    name: 'Peinture',    desc: 'Intérieure & extérieure. Murs, plafonds, boiseries, façades — préparation et finition soignées.' },
+  { icon: iconRevetement,  name: 'Revêtement',  desc: 'Sols et murs : carrelage, parquet, faïence, vinyl, lino, moquette — conseil et pose soignée.' },
+  { icon: iconRavalement,  name: 'Ravalement',  desc: 'Ravalement de façade avec des matériaux spécifiques pour redonner vie à vos murs extérieurs..' },
+  { icon: iconAmenagement, name: 'Aménagement', desc: 'Aménagement intérieur : pose de placo BA13, carrelage, faïence, menuiserie et isolation — pour un intérieur unique et à votre image.' },
 ]
 </script>

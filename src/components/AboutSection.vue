@@ -9,29 +9,32 @@
           :visibleOnce="{ opacity:1, x:0, transition:{ duration:700 } }"
           class="relative mx-auto w-full max-w-md lg:max-w-none"
         >
-          <!-- Photo principale -->
-          <div class="w-full aspect-[4/3] rounded-2xl bg-gradient-to-br from-brand-foret to-green-800
-                      flex items-center justify-center">
-            <div class="text-white/20 text-center">
-              <Building2 class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3" />
-              <p class="text-sm">Photo de chantier</p>
-            </div>
-          </div>
+        <!-- Photo principale -->
+        <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden group">
+          <img
+            src="/photo/about/salomon.jpeg"
+            alt="Chantier de peinture Da Silva Leite"
+            class="w-full h-full object-cover object-[center_16%] transition-transform duration-700 group-hover:scale-105"
+          />
+        </div>
 
-          <!-- Photo accent — masquée sur très petit mobile -->
-          <div class="hidden sm:flex absolute -bottom-5 -right-5 lg:-bottom-6 lg:-right-6
-                      w-32 h-32 sm:w-40 sm:h-40 lg:w-44 lg:h-44 rounded-2xl
-                      border-4 border-white bg-gradient-to-br from-brand-moyen to-brand-foret
-                      items-center justify-center shadow-xl">
-            <CheckCircle class="w-8 h-8 sm:w-10 sm:h-10 text-white/30" />
+          <!-- Photo accent -->
+          <div class="hidden sm:block absolute -bottom-5 -right-5 lg:-bottom-6 lg:-right-6
+            w-44 h-44 sm:w-52 sm:h-52 lg:w-60 lg:h-60 rounded-2xl
+            border-4 border-white shadow-xl overflow-hidden group">
+            <img
+              src="/photo/about/camion.png"
+              alt="Camion de l'entreprise Da Silva Leite"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
           </div>
 
           <!-- Badge flottant -->
-          <div class="absolute -top-3 -left-3 sm:-top-4 sm:-left-4
-                      bg-brand-vif text-white rounded-2xl p-3 sm:p-5
-                      shadow-xl shadow-brand-vif/40">
+          <div class="absolute -top-5 -left-4 sm:-top-4 sm:-left-4
+            bg-brand-vif text-white rounded-2xl p-4 sm:p-5
+            shadow-xl shadow-brand-vif/40 animate-float">
             <div class="font-display text-3xl sm:text-4xl leading-none">2007</div>
-            <div class="text-[10px] sm:text-xs font-light mt-1 opacity-90">Année de création</div>
+            <div class="text-[10px] sm:text-xs font-light mt-1 ">Année de création</div>
           </div>
         </div>
 
@@ -48,10 +51,9 @@
             indépendant
           </h2>
           <p class="text-gray-500 text-sm leading-loose mb-6 sm:mb-8">
-            Basé à Rosny-sur-Seine dans les Yvelines, j'interviens depuis 2007 chez des
-            particuliers en Île-de-France pour des travaux de peinture, rénovation et
-            décoration. Ce qui me tient à cœur : un travail soigné, une relation de
-            confiance et un résultat dont vous serez fier.
+            Basé dans les Yvelines et ses environs, j’interviens depuis 2007 auprès de particuliers en 
+            Île-de-France pour des travaux de peinture, rénovation et menuiserie. Mon engagement : un travail 
+            soigné, une relation de confiance et un résultat à la hauteur de vos attentes.
           </p>
 
           <!-- Valeurs -->
@@ -64,7 +66,7 @@
 
           <a href="#contact" class="btn-primary">
             <PhoneCall class="w-4 h-4" />
-            Demander un devis gratuit
+            Demander un devis
           </a>
         </div>
       </div>
@@ -78,7 +80,7 @@ import { Building2, CheckCircle, PhoneCall } from 'lucide-vue-next'
 const values = [
   { text: 'Écoute et disponibilité' },
   { text: 'Soin du détail' },
-  { text: 'Devis transparent' },
-  { text: 'Respect des délais' },
+  { text: 'Devis gratuit' },
+  { text: 'Relation de confiance' },
 ]
 </script>

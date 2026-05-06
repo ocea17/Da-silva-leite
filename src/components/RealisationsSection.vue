@@ -35,27 +35,18 @@
           <!-- Image (placeholder coloré) -->
           <div class="aspect-[4/3] relative overflow-hidden">
             <!-- Avant -->
-            <div
-              :class="real.colorBefore"
-              class="absolute inset-0 flex items-center justify-center transition-opacity duration-500"
+            <img
+              :src="real.imgBefore"
+              alt="Avant"
+              :class="['absolute inset-0 w-full h-full object-cover transition-opacity duration-500', real.imgPositionBefore ?? 'object-center']"
               :style="real.showAfter ? 'opacity:0' : 'opacity:1'"
-            >
-              <div class="text-center text-white/30">
-                <component :is="real.icon" class="w-12 h-12 mx-auto mb-2" />
-                <p class="text-xs font-medium uppercase tracking-widest">Avant</p>
-              </div>
-            </div>
-            <!-- Après -->
-            <div
-              :class="real.colorAfter"
-              class="absolute inset-0 flex items-center justify-center transition-opacity duration-500"
+            />
+            <img
+              :src="real.imgAfter"
+              alt="Après"
+              :class="['absolute inset-0 w-full h-full object-cover transition-opacity duration-500', real.imgPositionAfter ?? 'object-center']"
               :style="real.showAfter ? 'opacity:1' : 'opacity:0'"
-            >
-              <div class="text-center text-white/40">
-                <CheckCircle class="w-12 h-12 mx-auto mb-2" />
-                <p class="text-xs font-medium uppercase tracking-widest">Après</p>
-              </div>
-            </div>
+            />
           </div>
 
           <!-- Overlay bas -->
@@ -95,11 +86,56 @@ import { ref } from 'vue'
 import { ArrowRight, CheckCircle, PaintBucket, Grid2X2, Building2, Sparkles } from 'lucide-vue-next'
 
 const realisations = ref([
-  { title: 'Salon complet', location: 'Mantes-la-Jolie (78)', category: 'Peinture intérieure', icon: PaintBucket, colorBefore: 'bg-gray-600',   colorAfter: 'bg-brand-foret',  showAfter: false },
-  { title: 'Ravalement façade', location: 'Versailles (78)',      category: 'Ravalement',          icon: Building2,   colorBefore: 'bg-gray-500',   colorAfter: 'bg-green-700',    showAfter: false },
-  { title: 'Salle de bain', location: 'Rosny-sur-Seine (78)', category: 'Revêtement',          icon: Grid2X2,     colorBefore: 'bg-stone-600',   colorAfter: 'bg-teal-700',     showAfter: false },
-  { title: 'Entrée décorée', location: 'Île-de-France',         category: 'Aménagement',         icon: Sparkles,    colorBefore: 'bg-zinc-600',    colorAfter: 'bg-emerald-700',  showAfter: false },
-  { title: 'Façade villa', location: 'Yvelines (78)',          category: 'Peinture extérieure', icon: Building2,   colorBefore: 'bg-neutral-600', colorAfter: 'bg-brand-foret',  showAfter: false },
-  { title: 'Pose parquet', location: 'Mantes-la-Jolie (78)', category: 'Revêtement',          icon: Grid2X2,     colorBefore: 'bg-amber-800',   colorAfter: 'bg-amber-600',    showAfter: false },
+  {
+    title: 'Ravalement de façade',
+    location: 'Mantes-la-Jolie (78)',
+    category: 'Ravalement',
+    imgBefore: '/photo/realisations/peinture5_avant.jpeg',
+    imgAfter:  '/photo/realisations/peinture5_apres.jpeg',
+    showAfter: false
+  },
+  {
+    title: 'Revetement moquette sur escalier',
+    location: 'Versailles (78)',
+    category: 'Revetement',
+    imgBefore: '/photo/realisations/escalier_avant.jpeg',
+    imgAfter:  '/photo/realisations/escalier_apres.jpeg',
+    showAfter: false
+  },
+  {
+    title: 'Isolation par l\'extérieur',
+    location: 'Poissy (78)',
+    category: 'Isolation',
+    imgBefore: '/photo/realisations/renovation3_avant.jpeg',
+    imgAfter:  '/photo/realisations/renovation3_apres.jpeg',
+    imgPositionBefore: 'object-[center_80%]',
+    showAfter: false
+  },
+  {
+    title: 'Isolation par l\'extérieur',
+    location: 'Les Mureaux (78)',
+    category: 'Isolation',
+    imgBefore: '/photo/realisations/renovation7_avant.png',
+    imgAfter:  '/photo/realisations/renovation7_apres.jpeg',
+    showAfter: false
+  },
+  {
+    title: 'Ravalement de façade',
+    location: 'Rambouillet (78)',
+    category: 'Ravalement',
+    imgBefore: '/photo/realisations/peinture6_avant.jpeg',
+    imgAfter:  '/photo/realisations/peinture6_apres.jpeg',
+    showAfter: false
+  },
+   {
+    title: 'Aménagement d\'intérieur',
+    location: 'Versailles (78)',
+    category: 'Aménagement',
+    imgBefore: '/photo/realisations/renovation6_avant.jpeg',
+    imgAfter:  '/photo/realisations/renovation6_apres.jpeg',
+    imgPositionAfter:  'object-[center_10%]',
+    showAfter: false
+  },
+  
 ])
 </script>
