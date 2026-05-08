@@ -11,7 +11,6 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    // Optimise le bundle final pour la prod
     rollupOptions: {
       output: {
         manualChunks: {
