@@ -72,7 +72,7 @@
             <div class="relative rounded-2xl overflow-hidden aspect-[4/3] group">
               <img
                 :src="service.img"
-                :alt="service.name"
+                :alt="service.imgAlt"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
@@ -127,6 +127,7 @@
 </template>
 
 <script setup>
+import { usePageMeta } from '@/composables/usePageMeta'
 import { CheckCircle, Check, PhoneCall, ChevronRight } from 'lucide-vue-next'
 import ContactSection from '@/components/ContactSection.vue'
 import iconPeinture    from '@/assets/images/peinture.svg'
@@ -134,10 +135,19 @@ import iconRevetement  from '@/assets/images/revetement.svg'
 import iconRavalement  from '@/assets/images/ravalement.svg'
 import iconAmenagement from '@/assets/images/amenagement.svg'
 
+// ─── SEO ───
+usePageMeta({
+  title: 'Nos Services — Peinture, Ravalement, Revêtements | Da Silva Leite',
+  description: 'Peinture intérieure et extérieure, ravalement de façade, revêtements de sol, aménagement intérieur dans les Yvelines. Artisan peintre depuis 2007 — Devis gratuit.',
+  canonical: 'https://peinturesld.oceaneleite.fr/services',
+  ogImage: 'https://peinturesld.oceaneleite.fr/og-image.png'
+})
+
 const services = [
   {
     slug: 'peinture', name: 'Peinture',
     img: '/photo/services/peinture.jpeg',
+    imgAlt: 'Peinture intérieure de chambre dans les Yvelines par Da Silva Leite',
     caption: 'Peinture chambres — Rosny-sur-Seine',
     intro: 'Je prends en charge la préparation des surfaces, l\'application des peintures et la finition, pour un résultat impeccable et soigné — intérieur comme extérieur.',
     prestations: ['Peinture intérieure : murs, plafonds, boiseries', 'Peinture extérieure : façades, volets, portails', 'Pose de papier peint et revêtements décoratifs', 'Préparation des supports : enduit, ponçage, impression'],
@@ -145,6 +155,7 @@ const services = [
   {
     slug: 'revetement', name: 'Revêtement',
     img: '/photo/services/revetement.jpeg',
+    imgAlt: 'Pose de revêtement de sol par l\'artisan Da Silva Leite à Mantes-la-Jolie',
     caption: 'Revêtement de sol — Mantes-la-Jolie',
     intro: 'Carrelage, parquet, faïence, sol souple ou rigide, moquette — je vous assure une pose soignée dans les règles de l\'art.',
     prestations: ['Carrelage et faïence (salle de bain, cuisine, séjour)', 'Parquet : pose flottante', 'Sol vinyle, lino, moquette', 'Revêtements muraux décoratifs', 'Ragréage et préparation des sols'],
@@ -152,6 +163,7 @@ const services = [
   {
     slug: 'ravalement', name: 'Ravalement de façade',
     img: '/photo/services/ravalement.jpeg',
+    imgAlt: 'Ravalement de façade réalisé par Da Silva Leite à Poissy (78)',
     caption: 'Ravalement de façade — Poissy',
     intro: 'Expertise et matériaux spécialisés pour redonner vie à vos murs extérieurs. Un ravalement soigné protège votre bien et valorise votre patrimoine.',
     prestations: ['Ravalement de façade complet', 'Traitement et reprise des fissures', 'Peinture de façade minérale ou organique (type pliolite)', 'Nettoyage haute pression et démoussage'],
@@ -159,6 +171,7 @@ const services = [
   {
     slug: 'amenagement', name: 'Aménagement d\'intérieur',
     img: '/photo/services/amenagement.jpeg',
+    imgAlt: 'Aménagement intérieur réalisé par Da Silva Leite aux Mureaux (78)',
     caption: 'Aménagement d\'intérieur — Les Mureaux',
     intro: 'Aménagement d\'intérieur, agencement, petits travaux de rénovation — pour créer un intérieur qui vous ressemble, fonctionnel et esthétique.',
     prestations: ['Pose de placo BA13 ', 'Pose d\'isolation par l\'intérieur', 'Carrelage, faïence', 'Petits travaux de menuiserie et finitions'],

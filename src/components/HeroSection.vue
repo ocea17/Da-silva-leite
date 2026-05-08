@@ -90,25 +90,25 @@
           class="hidden lg:block relative h-[620px]"
         >
           <!-- Card grande — gauche -->
-         <div class="absolute left-0 top-0 w-[54%] h-[60%] rounded-2xl overflow-hidden
-            shadow-2xl group cursor-default">
+          <div class="absolute left-0 top-0 w-[54%] h-[60%] rounded-2xl overflow-hidden
+                      shadow-2xl group cursor-default">
             <img
               src="/photo/hero/peinture-chambre.jpeg"
-              alt="Peinture intérieure"
+              alt="Peinture intérieure d'une chambre dans les Yvelines par Da Silva Leite"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <!-- Overlay tag -->
             <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-4">
               <span class="text-white text-xs font-semibold">Peinture intérieure</span>
             </div>
           </div>
 
           <!-- Card petite — haut droite -->
+          <!-- ✅ alt corrigé : était "Peinture", trop générique -->
           <div class="absolute right-0 top-0 w-[42%] h-[30%] rounded-2xl overflow-hidden
                       shadow-xl group cursor-default">
             <img
               src="/photo/hero/escalier.jpeg"
-              alt="Peinture"
+              alt="Revêtement d'escalier intérieur réalisé par Da Silva Leite"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-3">
@@ -121,7 +121,7 @@
                       shadow-xl group cursor-default">
             <img
               src="/photo/hero/bibliotheque.jpeg"
-              alt="Aménagement intérieur"
+              alt="Aménagement intérieur d'une bibliothèque par Da Silva Leite"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-3">
@@ -130,11 +130,11 @@
           </div>
 
           <!-- Card large — bas -->
-          <div class="absolute left-0 bottom-0 w-full h-[36%]  rounded-2xl overflow-hidden
+          <div class="absolute left-0 bottom-0 w-full h-[36%] rounded-2xl overflow-hidden
                       shadow-xl group cursor-default">
             <img
               src="/photo/hero/exterieur.jpeg"
-              alt="Peinture extérieure vitrine"
+              alt="Peinture extérieure de façade ou vitrine dans les Yvelines par Da Silva Leite"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-4">
