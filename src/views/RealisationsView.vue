@@ -384,8 +384,8 @@ import { usePageMeta } from '@/composables/usePageMeta'
 usePageMeta({
   title:       'Réalisations Avant/Après — Peinture & Rénovation dans les Yvelines | Da Silva Leite',
   description: 'Découvrez les réalisations de Da Silva Leite : photos avant/après de chantiers de peinture, revêtements, ravalement et aménagement dans les Yvelines (78).',
-  canonical:   'https://dasilva-leite.fr/realisations',
-  ogImage:     'https://dasilva-leite.fr/og-image.png',
+  canonical:   'https://peinturesld.oceaneleite.fr/og-image.png',
+  ogImage:     'https://peinturesld.oceaneleite.fr/og-image.png',
 })
 
 // ─── Chantiers complets ───
