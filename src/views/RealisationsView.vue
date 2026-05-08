@@ -50,7 +50,7 @@
           dans les Yvelines et en Île-de-France.
         </p>
 
-        <!-- CTA → section contact accueil -->
+        <!-- CTA -->
         <a href="/#contact" v-motion :initial="{ opacity:0, y:12 }" :enter="{ opacity:1, y:0, transition:{ delay:550, duration:600 } }"
            class="btn-primary inline-flex">
           <CheckCircle class="w-4 h-4" /> Demander un devis gratuit
@@ -87,7 +87,6 @@
             >
               {{ chantier.name }}
             </button>
-            <!-- Espace de fin pour que le dernier bouton ne soit pas coupé -->
             <div class="flex-none w-4 sm:hidden" />
           </div>
         </div>
@@ -99,7 +98,6 @@
               <!-- Infos chantier -->
               <div class="lg:col-span-1 bg-brand-clair rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
                 <div>
-                  <!-- Icône catégorie -->
                   <div class="w-12 h-12 rounded-2xl bg-brand-vif flex items-center justify-center mb-5">
                     <img :src="chantiers[activeChantier].icon" :alt="chantiers[activeChantier].name"
                          class="w-7 h-7 brightness-200" />
@@ -113,7 +111,6 @@
                   <p class="text-gray-500 text-sm leading-relaxed mb-5">
                     {{ chantiers[activeChantier].desc }}
                   </p>
-                  <!-- Détails -->
                   <div class="flex flex-col gap-2">
                     <div class="flex items-center gap-2 text-sm text-gray-500">
                       <MapPin class="w-3.5 h-3.5 text-brand-vif flex-shrink-0" />
@@ -147,9 +144,7 @@
                   <div
                     v-for="(photo, pi) in chantiers[activeChantier].photos" :key="pi"
                     class="relative rounded-xl overflow-hidden group cursor-pointer"
-                    :class="[
-                      pi === 0 ? 'col-span-2 sm:col-span-2 row-span-2 aspect-square' : 'aspect-square',
-                    ]"
+                    :class="[pi === 0 ? 'col-span-2 sm:col-span-2 row-span-2 aspect-square' : 'aspect-square']"
                     @click="openLightbox(activeChantier, pi)"
                   >
                     <div class="relative rounded-xl overflow-hidden group cursor-pointer"
@@ -161,21 +156,16 @@
                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
-
-                    <!-- Overlay hover -->
                     <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100
                                 transition-opacity duration-300 flex items-center justify-center">
                       <ZoomIn class="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                     </div>
-
-                    <!-- Badge étape -->
                     <div class="absolute top-2 left-2 bg-brand-foret/80 text-white text-[10px]
                                 font-semibold px-2 py-0.5 rounded-full backdrop-blur-sm">
                       {{ photo.etape }}
                     </div>
                   </div>
                 </div>
-
                 <p class="text-gray-400 text-[10px] italic text-center mt-3">
                   Cliquer pour agrandir
                 </p>
@@ -226,14 +216,14 @@
               <!-- Avant -->
               <img
                 :src="real.imgBefore"
-                alt="Avant"
+                :alt="`Avant — ${real.title} à ${real.location}`"
                 class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
                 :style="real.showAfter ? 'opacity:0' : 'opacity:1'"
               />
               <!-- Après -->
               <img
                 :src="real.imgAfter"
-                alt="Après"
+                :alt="`Après — ${real.title} à ${real.location}`"
                 class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
                 :style="real.showAfter ? 'opacity:1' : 'opacity:0'"
               />
@@ -244,17 +234,13 @@
                 {{ real.category }}
               </div>
 
-
-
-              <!-- Overlay bas : gradient + badge Avant/Après (desktop + mobile) -->
+              <!-- Overlay bas -->
               <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3">
-                <!-- Hint tap mobile uniquement -->
                 <div v-if="!real.showAfter"
                      class="absolute bottom-3 left-3 flex items-center gap-1 bg-black/40 text-white/70 text-xs font-medium
                             px-2 py-0.5 rounded-full backdrop-blur-sm sm:hidden pointer-events-none">
                   Toucher pour voir après
                 </div>
-                <!-- Badge Avant/Après — toujours fixé en bas à droite -->
                 <div class="absolute bottom-3 right-3 text-[10px] font-bold px-2.5 py-1 rounded-full transition-all duration-300"
                      :class="real.showAfter ? 'bg-brand-vif text-white' : 'bg-white/20 text-white'">
                   {{ real.showAfter ? 'Après' : 'Avant' }}
@@ -271,7 +257,7 @@
 
             <!-- Infos -->
             <div class="p-4 sm:p-5">
-              <h3 class="font-poppins font-semibold text-brand-foret text-base sm:text-base mb-1">{{ real.title }}</h3>
+              <h3 class="font-poppins font-semibold text-brand-foret text-base mb-1">{{ real.title }}</h3>
               <div class="flex items-center gap-2 text-gray-400 text-sm mb-2 sm:mb-3 font-poppins">
                 <MapPin class="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
                 {{ real.location }}
@@ -325,7 +311,7 @@
               <X class="w-7 h-7" />
             </button>
 
-            <!-- Image (tappable sur mobile) -->
+            <!-- Image -->
             <div class="rounded-2xl overflow-hidden aspect-[4/3] select-none relative">
               <img
                 v-if="lightbox.photo?.src"
@@ -333,7 +319,6 @@
                 :alt="lightbox.photo.label"
                 class="w-full h-full object-cover"
               />
-              <!-- Fallback si pas encore de src (chantier sans photo) -->
               <div v-else class="w-full h-full flex items-center justify-center bg-gray-800 text-white/30">
                 <div class="text-center">
                   <Image class="w-16 h-16 mx-auto mb-2" />
@@ -341,13 +326,12 @@
                   <p class="text-sm mt-1 opacity-60">{{ lightbox.photo?.etape }}</p>
                 </div>
               </div>
-              <!-- Badge étape -->
               <div v-if="lightbox.photo?.etape"
                    class="absolute top-3 left-3 bg-brand-foret/80 text-white text-xs
                           font-semibold px-3 py-1 rounded-full backdrop-blur-sm">
                 {{ lightbox.photo.etape }}
               </div>
-              <!-- Zones de tap mobile gauche / droite -->
+              <!-- Zones de tap mobile -->
               <button @touchend.prevent="prevPhoto"
                       :disabled="lightbox.photoIndex === 0"
                       class="absolute inset-y-0 left-0 w-1/2 sm:hidden disabled:opacity-0" />
@@ -386,13 +370,23 @@
 import { ref, computed, watch } from 'vue'
 import {
   CheckCircle, MapPin, PhoneCall, ChevronRight, ChevronLeft, Check,
-  PaintBucket, Grid2X2, Building2, Sparkles, Image, ZoomIn, Clock, X, Plus
+  Image, ZoomIn, Clock, X, Plus
 } from 'lucide-vue-next'
 
 import iconPeinture    from '@/assets/images/peinture.svg'
 import iconRevetement  from '@/assets/images/revetement.svg'
 import iconRavalement  from '@/assets/images/ravalement.svg'
 import iconAmenagement from '@/assets/images/amenagement.svg'
+
+import { usePageMeta } from '@/composables/usePageMeta'
+
+// ─── SEO ───
+usePageMeta({
+  title:       'Réalisations Avant/Après — Peinture & Rénovation dans les Yvelines | Da Silva Leite',
+  description: 'Découvrez les réalisations de Da Silva Leite : photos avant/après de chantiers de peinture, revêtements, ravalement et aménagement dans les Yvelines (78).',
+  canonical:   'https://dasilva-leite.fr/realisations',
+  ogImage:     'https://dasilva-leite.fr/og-image.png',
+})
 
 // ─── Chantiers complets ───
 const chantiers = [
@@ -403,14 +397,14 @@ const chantiers = [
     icon: iconPeinture,
     location: 'Les Mureaux (78)',
     duree: '? jours de chantier',
-    desc: 'Rénovation complète d\'une chambre : préparation des murs, pose de placo et de plaques de doublage en polystyrène, travaux de menuiserie avec création de rebords de fenêtre et réparation de l\'armoire, application de peinture blanche satinée et mise en valeur d’un mur avec papier peint décoratif.',
+    desc: 'Rénovation complète d\'une chambre : préparation des murs, pose de placo et de plaques de doublage en polystyrène, travaux de menuiserie avec création de rebords de fenêtre et réparation de l\'armoire, application de peinture blanche satinée et mise en valeur d\'un mur avec papier peint décoratif.',
     travaux: ['Rebouchage et ponçage', 'Isolation plaque doublage polyester', 'Pose de placo BA13', 'Travaux de menuiseries', 'Couches peinture blanc satiné', 'Mur en papier peint décoratif'],
     photos: [
       { label: 'Vue d\'ensemble avant', etape: 'Avant',       src: '/photo/realisations/travaux_complet/avant.jpeg' },
       { label: 'Préparation murs',      etape: 'Préparation',  src: '/photo/realisations/travaux_complet/preparation.png' },
-      { label: 'Isolation plaque doublage polyester',     etape: 'Isolation',       src: '/photo/realisations/travaux_complet/enduit.jpeg' },
-      { label: 'Isolation plaque doublage polyester',       etape: 'Isolation',  src: '/photo/realisations/travaux_complet/couche.jpeg' },
-      { label: 'Peinture et papier peint',        etape: 'Peinture',        src: '/photo/realisations/travaux_complet/apres.jpeg' },
+      { label: 'Isolation plaque doublage polyester', etape: 'Isolation', src: '/photo/realisations/travaux_complet/enduit.jpeg' },
+      { label: 'Isolation plaque doublage polyester', etape: 'Isolation', src: '/photo/realisations/travaux_complet/couche.jpeg' },
+      { label: 'Peinture et papier peint', etape: 'Peinture', src: '/photo/realisations/travaux_complet/apres.jpeg' },
       { label: 'Résultat final',       etape: 'Finition',     src: '/photo/realisations/travaux_complet/finition.jpeg' },
     ]
   },
@@ -421,15 +415,15 @@ const chantiers = [
     icon: iconAmenagement,
     location: 'Saint-Rémy-l\'Honoré (78)',
     duree: '? jours de chantier',
-    desc: 'Aménagement d\'un atelier avec pose de parquet, peinture, montage de meubles, traveaux de menuiserie création d\'étagères pour optimiser l\'espace de travail et améliorer l\'ergonomie.',
+    desc: 'Aménagement d\'un atelier avec pose de parquet, peinture, montage de meubles, travaux de menuiserie et création d\'étagères pour optimiser l\'espace de travail et améliorer l\'ergonomie.',
     travaux: ['Pose de parquet', 'Peinture', 'Travaux de menuiserie', 'Création d\'étagères', 'Montage de meubles', 'Finitions'],
     photos: [
-      { label: 'Atelier avant',           etape: 'Avant',        src: '/photo/realisations/travaux1_complet/avant.png' },
-      { label: 'Montage de meubles',           etape: 'Montage',   src: '/photo/realisations/travaux1_complet/montage.jpeg' },
-      { label: 'Création d\'étagères',       etape: 'menuiserie',  src: '/photo/realisations/travaux1_complet/menuiserie.jpeg' },
-      { label: 'Application peinture',     etape: 'peinture',      src: '/photo/realisations/travaux1_complet/peinture1.jpeg' },
-      { label: 'Application peinture',   etape: 'peinture', src: '/photo/realisations/travaux1_complet/peinture.jpeg' },
-      { label: 'Résultat final',         etape: 'Après',       src: '/photo/realisations/travaux1_complet/finition.jpeg' },
+      { label: 'Atelier avant',         etape: 'Avant',      src: '/photo/realisations/travaux1_complet/avant.png' },
+      { label: 'Montage de meubles',    etape: 'Montage',    src: '/photo/realisations/travaux1_complet/montage.jpeg' },
+      { label: 'Création d\'étagères',  etape: 'Menuiserie', src: '/photo/realisations/travaux1_complet/menuiserie.jpeg' },
+      { label: 'Application peinture',  etape: 'Peinture',   src: '/photo/realisations/travaux1_complet/peinture1.jpeg' },
+      { label: 'Application peinture',  etape: 'Peinture',   src: '/photo/realisations/travaux1_complet/peinture.jpeg' },
+      { label: 'Résultat final',        etape: 'Après',      src: '/photo/realisations/travaux1_complet/finition.jpeg' },
     ]
   },
 ]
@@ -440,12 +434,7 @@ const activeChantier = ref(0)
 const lightbox = ref({ open: false, chantierIndex: 0, photoIndex: 0, photo: null })
 
 function openLightbox(ci, pi) {
-  lightbox.value = {
-    open: true,
-    chantierIndex: ci,
-    photoIndex: pi,
-    photo: chantiers[ci].photos[pi]
-  }
+  lightbox.value = { open: true, chantierIndex: ci, photoIndex: pi, photo: chantiers[ci].photos[pi] }
 }
 function prevPhoto() {
   if (lightbox.value.photoIndex > 0) {
@@ -461,236 +450,40 @@ function nextPhoto() {
   }
 }
 
-// ─── Touch / Swipe ───
-
-// Cartes Avant/Après — tap pour toggle (géré directement dans le template)
+// ─── Toggle carte avant/après (mobile) ───
 function toggleCard(real) {
   const wasShowing = real.showAfter
   realisations.value.forEach(r => { r.showAfter = false })
   real.showAfter = !wasShowing
 }
 
-
-const categories   = ['Tous', 'Peinture', 'Isolation', 'Revêtement', 'Ravalement', 'Aménagement']
+const categories = ['Tous', 'Peinture', 'Isolation', 'Revêtement', 'Ravalement', 'Aménagement']
 
 const realisations = ref([
-  
-{ 
-  title: 'Revêtement escalier',
-  location: 'Versailles (78)',
-  category: 'Revêtement',
-  imgBefore: '/photo/realisations/escalier_avant.jpeg',
-  imgAfter:  '/photo/realisations/escalier_apres.jpeg',
-  desc: 'Pose de revêtement lino souple effet bois sur un escalier en béton, pour un résultat moderne et chaleureux, facile d\'entretien.',
-  showAfter: false
-},
-{ 
-  title: 'Revêtemens muraux',
-  location: 'Mantes-la-Jolie (78)',
-  category: 'Revêtement',
-  imgBefore: '/photo/realisations/mur_avant.jpeg',
-  imgAfter:  '/photo/realisations/mur_apres.jpeg',
-  desc: 'Pose de revêtements muraux décoratifs pour un intérieur esthétique et moderne.',
-  showAfter: false
-},
-{ 
-  title: 'Ravalement de façade',
-  location: 'Rambouillet (78)',
-  category: 'Ravalement',
-  imgBefore: '/photo/realisations/peinture6_avant.jpeg',
-  imgAfter:  '/photo/realisations/peinture6_apres.jpeg',
-  desc: 'Ravalement de façade peinture complete sur la façade, les volets et la porte de garage, pour un résultat harmonieux.',
-  showAfter: false
-},
-{ 
-  title: 'Peinture d\'une salle à manger',
-  location: 'Poissy (78)',
-  category: 'Peinture',
-  imgBefore: '/photo/realisations/peinture2_avant.jpeg',
-  imgAfter:  '/photo/realisations/peinture2_apres.jpeg',
-  desc: 'Peinture intérieure d\'une salle à manger avec une couleur chaleureuse et un style moderne.',
-  showAfter: false
-},
-{ 
-  title: 'Isolation d\'intérieur',
-  location: 'Les Mureaux (78)',
-  category: 'Isolation',
-  imgBefore: '/photo/realisations/renovation7_avant.png',
-  imgAfter:  '/photo/realisations/renovation7_apres.jpeg',
-  desc: 'Isolation intérieure avec pose de placo et de plaques de doublage en polystyrène pour un meilleur confort thermique et acoustique.',
-  showAfter: false
-},
-{ 
-  title: 'Revêtement escalier',
-  location: 'Mantes-la-Jolie (78)',
-  category: 'Revêtement',
-  imgBefore: '/photo/realisations/escalier1_avant.jpeg',
-  imgAfter:  '/photo/realisations/escalier1_apres.jpeg',
-  desc: 'Pose de revêtement en lino souple sur escalier en béton avec nez de marche antidérapant collé à la néoprène, pour un rendu moderne, chaleureux et facile d’entretien.',
-  showAfter: false
-},
-{ 
-  title: 'Ravalement de façade',
-  location: 'Mantes-la-Jolie (78)',
-  category: 'Ravalement',
-  imgBefore: '/photo/realisations/peinture5_avant.jpeg',
-  imgAfter:  '/photo/realisations/peinture5_apres.jpeg',
-  desc: 'Ravalement de façade avec nettoyage et peinture complète pour un résultat harmonieux et soigné.',
-  showAfter: false
-},
-{ 
-  title: 'Peinture et papier peint',
-  location: 'Germain-en-Laye (78)',
-  category: 'Peinture',
-  imgBefore: '/photo/realisations/peinture1_avant.jpeg',
-  imgAfter:  '/photo/realisations/peinture1_apres.jpeg',
-  desc: 'Peinture intérieure et pose de papier peint décoratif pour un intérieur esthétique et moderne.',
-  showAfter: false
-},
-{ 
-  title: 'Aménagement d\'intérieur',
-  location: 'Versailles (78)',
-  category: 'Aménagement',
-  imgBefore: '/photo/realisations/renovation6_avant.jpeg',
-  imgAfter:  '/photo/realisations/renovation6_apres.jpeg',
-  desc: 'Isolation : placo, doublage polystyrène, peinture, papier peint et menuiserie (rebords de fenêtre) pour le confort thermique et acoustique.',
-  showAfter: false
-},
-{ 
-  title: 'Revêtement sur escalier',
-  location: 'Buchelay (78)',
-  category: 'Revêtement',
-  imgBefore: '/photo/realisations/escaler2_avant.jpeg',
-  imgAfter:  '/photo/realisations/escaler2_apres.jpeg',
-  desc: 'Pose de revêtement en moquette sur des marche en bois pour un rendu chaleureux et confortable, idéal pour les espaces de vie.',
-  showAfter: false
-},
-{ 
-  title: 'Revêtement en parquet',
-  location: 'Coignières (78)',
-  category: 'Revêtement',
-  imgBefore: '/photo/realisations/sol_avant.png',
-  imgAfter:  '/photo/realisations/sol_apres.jpeg',
-  desc: 'Installation de parquet stratifié pour apporter une ambiance moderne et chaleureuse, tout en garantissant un entretien facile.',
-  showAfter: false
-},
-{ 
-  title: 'Peinture sur une cheminée',
-  location: 'Limay (78)',
-  category: 'Peinture',
-  imgBefore: '/photo/realisations/peinture_avant.jpeg',
-  imgAfter:  '/photo/realisations/peinture_apres.jpeg',
-  desc: 'Mise en peinture d’une cheminée pour un rendu élégant et convivial, tout en assurant une maintenance simple.',
-  showAfter: false
-},
-{ 
-  title: 'Aménagement de WC suspendu',
-  location: 'Mantes-la-Jolie (78)',
-  category: 'Aménagement',
-  imgBefore: '/photo/realisations/toilette_avant.jpeg',
-  imgAfter:  '/photo/realisations/toilette_apres.jpeg',
-  desc: 'Création de WC suspendu, faïence murale et peinture, avec pose de placo pour dissimuler le tuyau d’évacuation, pour un résultat soigné et confortable.',
-  showAfter: false
-},
-{ 
-  title: 'Isolation d\'intérieur',
-  location: 'Issou (78)',
-  category: 'Isolation',
-  imgBefore: '/photo/realisations/renovation1_avant.jpeg',
-  imgAfter:  '/photo/realisations/renovation1_apres.jpeg',
-  desc: 'Isolation intérieure par la pose de placo et de plaques de doublage en polystyrène afin d’optimiser le confort thermique et acoustique.',
-  showAfter: false
-},
-{ 
-  title: 'Isolation d\'intérieur',
-  location: 'Longnes (78)',
-  category: 'Isolation',
-  imgBefore: '/photo/realisations/renovation2_avant.jpeg',
-  imgAfter:  '/photo/realisations/renovation2_apres.jpeg',
-  desc: 'Isolation intérieure avec pose de placo et de plaques de doublage en polystyrène, ainsi que de petits travaux de menuiserie, pour améliorer le confort thermique et acoustique.',
-  showAfter: false
-},
-{ 
-  title: 'Ravalement de façade',
-  location: 'Rambouillet (78)',
-  category: 'Ravalement',
-  imgBefore: '/photo/realisations/peinture7_avant.jpeg',
-  imgAfter:  '/photo/realisations/peinture7_apres.jpeg',
-  desc: 'Ravalement de façade peinture complete sur la façade, les volets et la porte de garage, pour un résultat harmonieux.',
-  showAfter: false
-},
-{ 
-  title: 'Isolation fenêtre WC',
-  location: 'Rennemoulin (78)',
-  category: 'Isolation',
-  imgBefore: '/photo/realisations/renovation_avant.jpeg',
-  imgAfter:  '/photo/realisations/renovation_apres.jpeg',
-  desc: 'Isolation des fenêtres du WC pour améliorer le confort thermique et acoustique.',
-  showAfter: false
-},
-{ 
-  title: 'Peinture et papier peint',
-  location: 'Germain-en-Laye (78)',
-  category: 'Peinture',
-  imgBefore: '/photo/realisations/peinture3_avant.jpeg',
-  imgAfter:  '/photo/realisations/peinture3_apres.jpeg',
-  desc: 'Peinture intérieure et pose de papier peint décoratif pour un intérieur esthétique et moderne.',
-  showAfter: false
-},
-{ 
-  title: 'Revêtement escalier',
-  location: 'Mantes-la-Jolie (78)',
-  category: 'Revêtement',
-  imgBefore: '/photo/realisations/escalier4_avant.jpeg',
-  imgAfter:  '/photo/realisations/escalier4_apres.jpeg',
-  desc: 'Pose de revêtement en lino souple sur escalier en béton avec nez de marche antidérapant collé à la néoprène, pour un rendu moderne, chaleureux et facile d’entretien.',
-  showAfter: false
-},
-{ 
-  title: 'Aménagement d\'atelier',
-  location: 'Saint-Rémy-l\'Honoré (78)',
-  category: 'Aménagement',
-  imgBefore: '/photo/realisations/ammenagement1_avant.png',
-  imgAfter:  '/photo/realisations/ammenagement1_apres.jpeg',
-  desc: 'Aménagement d\'un atelier avec pose de parquet, peinture, traveaux de menuiserie création d\'étagères pour optimiser l\'espace de travail et améliorer l\'ergonomie.',
-  showAfter: false
-},
-{ 
-  title: 'Peinture du WC',
-  location: 'Voisins-le-Bretonneux (78)',
-  category: 'Peinture',
-  imgBefore: '/photo/realisations/renovation5_avant.png',
-  imgAfter:  '/photo/realisations/renovation5_apres.png',
-  desc: 'Peinture intérieure et pose de vinyle souple du WC pour un résultat propre et moderne.',
-  showAfter: false
-},
-{ 
-  title: 'Isolation murs et fenêtres',
-  location: 'Rennemoulin (78)',
-  category: 'Isolation',
-  imgBefore: '/photo/realisations/isolation_avant.jpeg',
-  imgAfter:  '/photo/realisations/isolation_apres.jpeg',
-  desc: 'Nettoyage et isolation des murs et fenêtres pour améliorer le confort thermique et acoustique.',
-  showAfter: false
-},
-{ 
-  title: 'Aménagement d\'atelier',
-  location: 'Saint-Rémy-l\'Honoré (78)',
-  category: 'Aménagement',
-  imgBefore: '/photo/realisations/ammenagement2_avant.jpeg',
-  imgAfter:  '/photo/realisations/ammenagement2_apres.jpeg',
-  desc: 'Aménagement d\'un atelier avec pose de parquet, peinture, traveaux de menuiserie création d\'étagères pour optimiser l\'espace de travail et améliorer l\'ergonomie.',
-  showAfter: false
-},
-{ 
-  title: 'Revêtement d\'escalier',
-  location: 'Versailles (78)',
-  category: 'Revêtement',
-  imgBefore: '/photo/realisations/escalier5_avant.png',
-  imgAfter:  '/photo/realisations/escalier5_apres.jpeg',
-  desc: 'Pose de revêtement en moqette sur des marches en bois pour un rendu moderne, chaleureux et facile d’entretien.',
-  showAfter: false
-},
+  { title: 'Revêtement escalier',          location: 'Versailles (78)',           category: 'Revêtement',  imgBefore: '/photo/realisations/escalier_avant.jpeg',    imgAfter: '/photo/realisations/escalier_apres.jpeg',    desc: 'Pose de revêtement lino souple effet bois sur un escalier en béton, pour un résultat moderne et chaleureux, facile d\'entretien.',                                                                                                               showAfter: false },
+  { title: 'Revêtements muraux',           location: 'Mantes-la-Jolie (78)',      category: 'Revêtement',  imgBefore: '/photo/realisations/mur_avant.jpeg',         imgAfter: '/photo/realisations/mur_apres.jpeg',         desc: 'Pose de revêtements muraux décoratifs pour un intérieur esthétique et moderne.',                                                                                                                                                             showAfter: false },
+  { title: 'Ravalement de façade',         location: 'Rambouillet (78)',          category: 'Ravalement',  imgBefore: '/photo/realisations/peinture6_avant.jpeg',   imgAfter: '/photo/realisations/peinture6_apres.jpeg',   desc: 'Ravalement de façade peinture complète sur la façade, les volets et la porte de garage, pour un résultat harmonieux.',                                                                                                                        showAfter: false },
+  { title: 'Peinture d\'une salle à manger', location: 'Poissy (78)',            category: 'Peinture',    imgBefore: '/photo/realisations/peinture2_avant.jpeg',   imgAfter: '/photo/realisations/peinture2_apres.jpeg',   desc: 'Peinture intérieure d\'une salle à manger avec une couleur chaleureuse et un style moderne.',                                                                                                                                                showAfter: false },
+  { title: 'Isolation d\'intérieur',       location: 'Les Mureaux (78)',          category: 'Isolation',   imgBefore: '/photo/realisations/renovation7_avant.png',  imgAfter: '/photo/realisations/renovation7_apres.jpeg', desc: 'Isolation intérieure avec pose de placo et de plaques de doublage en polystyrène pour un meilleur confort thermique et acoustique.',                                                                                                        showAfter: false },
+  { title: 'Revêtement escalier',          location: 'Mantes-la-Jolie (78)',      category: 'Revêtement',  imgBefore: '/photo/realisations/escalier1_avant.jpeg',   imgAfter: '/photo/realisations/escalier1_apres.jpeg',   desc: 'Pose de revêtement en lino souple sur escalier en béton avec nez de marche antidérapant collé à la néoprène, pour un rendu moderne, chaleureux et facile d\'entretien.',                                                                   showAfter: false },
+  { title: 'Ravalement de façade',         location: 'Mantes-la-Jolie (78)',      category: 'Ravalement',  imgBefore: '/photo/realisations/peinture5_avant.jpeg',   imgAfter: '/photo/realisations/peinture5_apres.jpeg',   desc: 'Ravalement de façade avec nettoyage et peinture complète pour un résultat harmonieux et soigné.',                                                                                                                                        showAfter: false },
+  { title: 'Peinture et papier peint',     location: 'Germain-en-Laye (78)',      category: 'Peinture',    imgBefore: '/photo/realisations/peinture1_avant.jpeg',   imgAfter: '/photo/realisations/peinture1_apres.jpeg',   desc: 'Peinture intérieure et pose de papier peint décoratif pour un intérieur esthétique et moderne.',                                                                                                                                         showAfter: false },
+  { title: 'Aménagement d\'intérieur',     location: 'Versailles (78)',           category: 'Aménagement', imgBefore: '/photo/realisations/renovation6_avant.jpeg', imgAfter: '/photo/realisations/renovation6_apres.jpeg', desc: 'Isolation : placo, doublage polystyrène, peinture, papier peint et menuiserie (rebords de fenêtre) pour le confort thermique et acoustique.',                                                                                               showAfter: false },
+  { title: 'Revêtement sur escalier',      location: 'Buchelay (78)',             category: 'Revêtement',  imgBefore: '/photo/realisations/escaler2_avant.jpeg',    imgAfter: '/photo/realisations/escaler2_apres.jpeg',    desc: 'Pose de revêtement en moquette sur des marches en bois pour un rendu chaleureux et confortable, idéal pour les espaces de vie.',                                                                                                            showAfter: false },
+  { title: 'Revêtement en parquet',        location: 'Coignières (78)',           category: 'Revêtement',  imgBefore: '/photo/realisations/sol_avant.png',          imgAfter: '/photo/realisations/sol_apres.jpeg',         desc: 'Installation de parquet stratifié pour apporter une ambiance moderne et chaleureuse, tout en garantissant un entretien facile.',                                                                                                              showAfter: false },
+  { title: 'Peinture sur une cheminée',    location: 'Limay (78)',                category: 'Peinture',    imgBefore: '/photo/realisations/peinture_avant.jpeg',    imgAfter: '/photo/realisations/peinture_apres.jpeg',    desc: 'Mise en peinture d\'une cheminée pour un rendu élégant et convivial, tout en assurant une maintenance simple.',                                                                                                                           showAfter: false },
+  { title: 'Aménagement de WC suspendu',   location: 'Mantes-la-Jolie (78)',      category: 'Aménagement', imgBefore: '/photo/realisations/toilette_avant.jpeg',    imgAfter: '/photo/realisations/toilette_apres.jpeg',    desc: 'Création de WC suspendu, faïence murale et peinture, avec pose de placo pour dissimuler le tuyau d\'évacuation, pour un résultat soigné et confortable.',                                                                               showAfter: false },
+  { title: 'Isolation d\'intérieur',       location: 'Issou (78)',                category: 'Isolation',   imgBefore: '/photo/realisations/renovation1_avant.jpeg', imgAfter: '/photo/realisations/renovation1_apres.jpeg', desc: 'Isolation intérieure par la pose de placo et de plaques de doublage en polystyrène afin d\'optimiser le confort thermique et acoustique.',                                                                                              showAfter: false },
+  { title: 'Isolation d\'intérieur',       location: 'Longnes (78)',              category: 'Isolation',   imgBefore: '/photo/realisations/renovation2_avant.jpeg', imgAfter: '/photo/realisations/renovation2_apres.jpeg', desc: 'Isolation intérieure avec pose de placo et de plaques de doublage en polystyrène, ainsi que de petits travaux de menuiserie, pour améliorer le confort thermique et acoustique.',                                                         showAfter: false },
+  { title: 'Ravalement de façade',         location: 'Rambouillet (78)',          category: 'Ravalement',  imgBefore: '/photo/realisations/peinture7_avant.jpeg',   imgAfter: '/photo/realisations/peinture7_apres.jpeg',   desc: 'Ravalement de façade peinture complète sur la façade, les volets et la porte de garage, pour un résultat harmonieux.',                                                                                                                    showAfter: false },
+  { title: 'Isolation fenêtre WC',         location: 'Rennemoulin (78)',          category: 'Isolation',   imgBefore: '/photo/realisations/renovation_avant.jpeg',  imgAfter: '/photo/realisations/renovation_apres.jpeg',  desc: 'Isolation des fenêtres du WC pour améliorer le confort thermique et acoustique.',                                                                                                                                                    showAfter: false },
+  { title: 'Peinture et papier peint',     location: 'Germain-en-Laye (78)',      category: 'Peinture',    imgBefore: '/photo/realisations/peinture3_avant.jpeg',   imgAfter: '/photo/realisations/peinture3_apres.jpeg',   desc: 'Peinture intérieure et pose de papier peint décoratif pour un intérieur esthétique et moderne.',                                                                                                                                         showAfter: false },
+  { title: 'Revêtement escalier',          location: 'Mantes-la-Jolie (78)',      category: 'Revêtement',  imgBefore: '/photo/realisations/escalier4_avant.jpeg',   imgAfter: '/photo/realisations/escalier4_apres.jpeg',   desc: 'Pose de revêtement en lino souple sur escalier en béton avec nez de marche antidérapant collé à la néoprène, pour un rendu moderne, chaleureux et facile d\'entretien.',                                                                   showAfter: false },
+  { title: 'Aménagement d\'atelier',       location: 'Saint-Rémy-l\'Honoré (78)', category: 'Aménagement', imgBefore: '/photo/realisations/ammenagement1_avant.png', imgAfter: '/photo/realisations/ammenagement1_apres.jpeg', desc: 'Aménagement d\'un atelier avec pose de parquet, peinture, travaux de menuiserie et création d\'étagères pour optimiser l\'espace de travail.',                                                                                         showAfter: false },
+  { title: 'Peinture du WC',               location: 'Voisins-le-Bretonneux (78)', category: 'Peinture',   imgBefore: '/photo/realisations/renovation5_avant.png',  imgAfter: '/photo/realisations/renovation5_apres.png',  desc: 'Peinture intérieure et pose de vinyle souple du WC pour un résultat propre et moderne.',                                                                                                                                               showAfter: false },
+  { title: 'Isolation murs et fenêtres',   location: 'Rennemoulin (78)',          category: 'Isolation',   imgBefore: '/photo/realisations/isolation_avant.jpeg',   imgAfter: '/photo/realisations/isolation_apres.jpeg',   desc: 'Nettoyage et isolation des murs et fenêtres pour améliorer le confort thermique et acoustique.',                                                                                                                                        showAfter: false },
+  { title: 'Aménagement d\'atelier',       location: 'Saint-Rémy-l\'Honoré (78)', category: 'Aménagement', imgBefore: '/photo/realisations/ammenagement2_avant.jpeg', imgAfter: '/photo/realisations/ammenagement2_apres.jpeg', desc: 'Aménagement d\'un atelier avec pose de parquet, peinture, travaux de menuiserie et création d\'étagères pour optimiser l\'espace de travail.',                                                                                        showAfter: false },
+  { title: 'Revêtement d\'escalier',       location: 'Versailles (78)',           category: 'Revêtement',  imgBefore: '/photo/realisations/escalier5_avant.png',    imgAfter: '/photo/realisations/escalier5_apres.jpeg',   desc: 'Pose de revêtement en moquette sur des marches en bois pour un rendu moderne, chaleureux et facile d\'entretien.',                                                                                                                         showAfter: false },
 ])
 
 const activeFilter = ref('Tous')

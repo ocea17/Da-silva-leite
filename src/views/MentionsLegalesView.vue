@@ -28,12 +28,10 @@
             <dl class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div v-for="item in editeur" :key="item.label" class="flex flex-col gap-1">
                 <dt class="text-xs font-semibold uppercase tracking-widest text-gray-400">{{ item.label }}</dt>
-                
                 <dd class="text-sm text-brand-foret font-medium">
                   {{ item.value }}<a v-if="item.link" :href="item.link" target="_blank" rel="noopener noreferrer" class="text-brand-vif hover:underline">{{ item.linkText }}</a>
                 </dd>
               </div>
-              
             </dl>
           </div>
 
@@ -101,7 +99,16 @@
 </template>
 
 <script setup>
+import { usePageMeta } from '@/composables/usePageMeta'
 import { ArrowLeft } from 'lucide-vue-next'
+
+// ─── SEO ───
+usePageMeta({
+  title: 'Mentions légales | Da Silva Leite',
+  description: 'Mentions légales du site de Da Silva Leite, artisan peintre dans les Yvelines.',
+  canonical: 'https://peinturesld.oceaneleite.fr/mentions-legales',
+  ogImage: 'https://peinturesld.oceaneleite.fr/og-image.png'
+})
 
 const editeur = [
   { label: 'Raison sociale', value: 'DA SILVA LEITE' },
@@ -110,7 +117,7 @@ const editeur = [
   { label: 'N° SIRET',       value: '49487511500029' },
   { label: 'E-mail',         value: 'peinture.sld@gmail.com' },
   { label: 'Téléphone',      value: '06 64 84 16 78' },
-  { label: 'Adresse',        value: '1 avenue Henry IV, 78710 Rosny-sur-Seine — Intervention uniquement à domicile, pas d’accueil au siège' },
+  { label: 'Adresse',        value: '1 avenue Henry IV, 78710 Rosny-sur-Seine — Intervention uniquement à domicile, pas d\'accueil au siège' },
   { label: 'Développé par',  value: 'Océane Leite — ', linkText: 'oceaneleite.fr', link: 'https://oceaneleite.fr' },
 ]
 
