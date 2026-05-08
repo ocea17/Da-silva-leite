@@ -30,7 +30,7 @@
           </div>
 
           <!-- Badge flottant -->
-          <div class="absolute -top-5 -left-4 sm:-top-4 sm:-left-4
+          <div class="absolute -top-5 left-2 sm:-top-4 sm:-left-4
             bg-brand-vif text-white rounded-2xl p-4 sm:p-5
             shadow-xl shadow-brand-vif/40 animate-float">
             <div class="font-display text-3xl sm:text-4xl leading-none">2007</div>

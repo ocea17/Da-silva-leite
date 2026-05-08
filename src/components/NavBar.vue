@@ -68,6 +68,18 @@
       </div>
     </Transition>
   </nav>
+
+  <!-- Backdrop flou derrière le menu mobile -->
+  <Teleport to="body">
+    <Transition name="backdrop-fade">
+      <div
+        v-if="mobileOpen"
+        class="fixed inset-0 z-40 md:hidden"
+        style="backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); background: rgba(0,0,0,0.35);"
+        @click="mobileOpen = false"
+      />
+    </Transition>
+  </Teleport>
 </template>
 
 <script setup>
@@ -103,4 +115,9 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 .slide-down-leave-active { transition: all 0.3s ease; }
 .slide-down-enter-from,
 .slide-down-leave-to { opacity: 0; transform: translateY(-12px); }
+
+.backdrop-fade-enter-active,
+.backdrop-fade-leave-active { transition: opacity 0.3s ease; }
+.backdrop-fade-enter-from,
+.backdrop-fade-leave-to { opacity: 0; }
 </style>

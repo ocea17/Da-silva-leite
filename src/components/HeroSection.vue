@@ -164,10 +164,10 @@
 
     <!-- Scroll indicator -->
     <a href="#services"
-       class="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2
+       class="absolute bottom-6 sm:bottom-8 left-0 right-0
               flex flex-col items-center gap-2 text-white/35 hover:text-brand-vif
               text-[10px] tracking-widest uppercase animate-bounce z-10 transition-colors duration-300
-              text-center w-max">
+              text-center">
       <span>Découvrir</span>
       <ChevronDown class="w-4 h-4 mx-auto" />
     </a>
