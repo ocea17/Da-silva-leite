@@ -1,9 +1,9 @@
 <template>
-  <section id="realisations" class="bg-brand-foret py-24">
-    <div class="max-w-6xl mx-auto px-6">
+  <section id="realisations" class="bg-brand-foret py-16 sm:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
 
       <!-- Header -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-14">
         <div v-motion :initial="{ opacity:0, y:24 }" :visibleOnce="{ opacity:1, y:0, transition:{ duration:600 } }">
           <div class="section-label mb-3" style="color:#6DC319">
             <span style="background:#6DC319" class="block w-6 h-0.5 rounded-full mr-2 inline-block align-middle"></span>
@@ -30,31 +30,23 @@
           class="group relative rounded-2xl overflow-hidden cursor-pointer"
           @mouseenter="real.showAfter = true"
           @mouseleave="real.showAfter = false"
+          @touchend.prevent="real.showAfter = !real.showAfter"
         >
           <!-- Image (placeholder coloré) -->
           <div class="aspect-[4/3] relative overflow-hidden">
             <!-- Avant -->
-            <div
-              :class="real.colorBefore"
-              class="absolute inset-0 flex items-center justify-center transition-opacity duration-500"
+            <img
+              :src="real.imgBefore"
+              alt="Avant"
+              :class="['absolute inset-0 w-full h-full object-cover transition-opacity duration-500', real.imgPositionBefore ?? 'object-center']"
               :style="real.showAfter ? 'opacity:0' : 'opacity:1'"
-            >
-              <div class="text-center text-white/30">
-                <component :is="real.icon" class="w-12 h-12 mx-auto mb-2" />
-                <p class="text-xs font-medium uppercase tracking-widest">Avant</p>
-              </div>
-            </div>
-            <!-- Après -->
-            <div
-              :class="real.colorAfter"
-              class="absolute inset-0 flex items-center justify-center transition-opacity duration-500"
+            />
+            <img
+              :src="real.imgAfter"
+              alt="Après"
+              :class="['absolute inset-0 w-full h-full object-cover transition-opacity duration-500', real.imgPositionAfter ?? 'object-center']"
               :style="real.showAfter ? 'opacity:1' : 'opacity:0'"
-            >
-              <div class="text-center text-white/40">
-                <CheckCircle class="w-12 h-12 mx-auto mb-2" />
-                <p class="text-xs font-medium uppercase tracking-widest">Après</p>
-              </div>
-            </div>
+            />
           </div>
 
           <!-- Overlay bas -->
@@ -81,7 +73,7 @@
           <!-- Hint hover -->
           <div class="absolute top-3 right-3 bg-black/40 text-white/70 text-[10px] px-2 py-1 rounded-full
                       opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-            Survoler pour voir après
+            <span class="hidden sm:inline">Survoler</span><span class="sm:hidden">Toucher</span> pour voir après
           </div>
         </div>
       </div>
@@ -94,11 +86,56 @@ import { ref } from 'vue'
 import { ArrowRight, CheckCircle, PaintBucket, Grid2X2, Building2, Sparkles } from 'lucide-vue-next'
 
 const realisations = ref([
-  { title: 'Salon complet', location: 'Mantes-la-Jolie (78)', category: 'Peinture intérieure', icon: PaintBucket, colorBefore: 'bg-gray-600',   colorAfter: 'bg-brand-foret',  showAfter: false },
-  { title: 'Ravalement façade', location: 'Versailles (78)',      category: 'Ravalement',          icon: Building2,   colorBefore: 'bg-gray-500',   colorAfter: 'bg-green-700',    showAfter: false },
-  { title: 'Salle de bain', location: 'Rosny-sur-Seine (78)', category: 'Revêtement',          icon: Grid2X2,     colorBefore: 'bg-stone-600',   colorAfter: 'bg-teal-700',     showAfter: false },
-  { title: 'Entrée décorée', location: 'Île-de-France',         category: 'Aménagement',         icon: Sparkles,    colorBefore: 'bg-zinc-600',    colorAfter: 'bg-emerald-700',  showAfter: false },
-  { title: 'Façade villa', location: 'Yvelines (78)',          category: 'Peinture extérieure', icon: Building2,   colorBefore: 'bg-neutral-600', colorAfter: 'bg-brand-foret',  showAfter: false },
-  { title: 'Pose parquet', location: 'Mantes-la-Jolie (78)', category: 'Revêtement',          icon: Grid2X2,     colorBefore: 'bg-amber-800',   colorAfter: 'bg-amber-600',    showAfter: false },
+  {
+    title: 'Ravalement de façade',
+    location: 'Mantes-la-Jolie (78)',
+    category: 'Ravalement',
+    imgBefore: '/photo/realisations/peinture5_avant.jpeg',
+    imgAfter:  '/photo/realisations/peinture5_apres.jpeg',
+    showAfter: false
+  },
+  {
+    title: 'Revetement moquette sur escalier',
+    location: 'Versailles (78)',
+    category: 'Revetement',
+    imgBefore: '/photo/realisations/escalier_avant.jpeg',
+    imgAfter:  '/photo/realisations/escalier_apres.jpeg',
+    showAfter: false
+  },
+  {
+    title: 'Isolation par l\'extérieur',
+    location: 'Poissy (78)',
+    category: 'Isolation',
+    imgBefore: '/photo/realisations/renovation3_avant.jpeg',
+    imgAfter:  '/photo/realisations/renovation3_apres.jpeg',
+    imgPositionBefore: 'object-[center_80%]',
+    showAfter: false
+  },
+  {
+    title: 'Isolation par l\'extérieur',
+    location: 'Les Mureaux (78)',
+    category: 'Isolation',
+    imgBefore: '/photo/realisations/renovation7_avant.png',
+    imgAfter:  '/photo/realisations/renovation7_apres.jpeg',
+    showAfter: false
+  },
+  {
+    title: 'Ravalement de façade',
+    location: 'Rambouillet (78)',
+    category: 'Ravalement',
+    imgBefore: '/photo/realisations/peinture6_avant.jpeg',
+    imgAfter:  '/photo/realisations/peinture6_apres.jpeg',
+    showAfter: false
+  },
+   {
+    title: 'Aménagement d\'intérieur',
+    location: 'Versailles (78)',
+    category: 'Aménagement',
+    imgBefore: '/photo/realisations/renovation6_avant.jpeg',
+    imgAfter:  '/photo/realisations/renovation6_apres.jpeg',
+    imgPositionAfter:  'object-[center_10%]',
+    showAfter: false
+  },
+  
 ])
 </script>

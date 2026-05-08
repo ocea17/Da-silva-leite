@@ -1,8 +1,8 @@
 <template>
-  <section id="services" class="bg-brand-clair py-24">
-    <div class="max-w-6xl mx-auto px-6">
+  <section id="services" class="bg-brand-clair py-16 sm:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
 
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-14">
         <div v-motion :initial="{ opacity:0, y:24 }" :visibleOnce="{ opacity:1, y:0, transition:{ duration:600 } }">
           <div class="section-label mb-3">Ce que nous faisons</div>
           <h2 class="section-title">Nos prestations<br/>de peinture</h2>
@@ -19,20 +19,20 @@
           :to="`/services`"
           v-motion :initial="{ opacity:0, y:32 }"
           :visibleOnce="{ opacity:1, y:0, transition:{ delay: i * 100, duration:600 } }"
-          class="group bg-white rounded-2xl p-8 relative overflow-hidden border border-transparent
+          class="group bg-white rounded-2xl p-6 sm:p-8 relative overflow-hidden border border-transparent
                  hover:border-brand-vif/20 shadow-sm hover:shadow-xl hover:shadow-brand-foret/10
                  transition-all duration-300 hover:-translate-y-2"
         >
           <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-vif scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
           <!-- Icône plus grande -->
-          <div class="w-20 h-20 rounded-2xl bg-brand-clair flex items-center justify-center mb-6
+          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-brand-clair flex items-center justify-center mb-4 sm:mb-6
                       group-hover:bg-brand-vif transition-colors duration-300">
             <img :src="service.icon" :alt="service.name"
-                 class="w-12 h-12 transition-all duration-300 group-hover:brightness-200" />
+                 class="w-10 h-10 sm:w-12 sm:h-12 transition-all duration-300 group-hover:brightness-200" />
           </div>
 
-          <h3 class="font-display text-2xl text-brand-foret tracking-wide mb-3">{{ service.name }}</h3>
+          <h3 class="font-display text-xl sm:text-2xl text-brand-foret tracking-wide mb-3">{{ service.name }}</h3>
           <p class="text-gray-500 text-sm leading-relaxed mb-5">{{ service.desc }}</p>
 
           <div class="flex items-center gap-2 text-brand-vif text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -52,9 +52,9 @@ import iconRavalement  from '@/assets/images/ravalement.svg'
 import iconAmenagement from '@/assets/images/amenagement.svg'
 
 const services = [
-  { icon: iconPeinture,    name: 'Peinture',    desc: 'Intérieure & extérieure. Murs, plafonds, boiseries, façades — préparation et finition impeccable.' },
-  { icon: iconRevetement,  name: 'Revêtement',  desc: 'Sols et murs : carrelage, parquet, faïence, vinyl, moquette — conseil et pose soignée.' },
-  { icon: iconRavalement,  name: 'Ravalement',  desc: 'Ravalement de façade avec matériaux durables pour redonner vie à vos murs extérieurs.' },
-  { icon: iconAmenagement, name: 'Aménagement', desc: 'Décoration intérieure, enduits décoratifs, béton ciré, stuc — pour un intérieur unique.' },
+  { icon: iconPeinture,    name: 'Peinture',    desc: 'Intérieure & extérieure. Murs, plafonds, boiseries, façades — préparation et finition soignées.' },
+  { icon: iconRevetement,  name: 'Revêtement',  desc: 'Sols et murs : carrelage, parquet, faïence, vinyl, lino, moquette — conseil et pose soignée.' },
+  { icon: iconRavalement,  name: 'Ravalement',  desc: 'Ravalement de façade avec des matériaux spécifiques pour redonner vie à vos murs extérieurs..' },
+  { icon: iconAmenagement, name: 'Aménagement', desc: 'Aménagement intérieur : pose de placo BA13, carrelage, faïence, menuiserie et isolation — pour un intérieur unique et à votre image.' },
 ]
 </script>
