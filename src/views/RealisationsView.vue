@@ -74,17 +74,22 @@
         </div>
 
         <!-- Tabs sélection chantier -->
-        <div class="flex gap-2 sm:gap-3 mb-8 overflow-x-auto pb-2 scrollbar-none">
-          <button
-            v-for="(chantier, i) in chantiers" :key="chantier.id"
-            @click="activeChantier = i"
-            class="flex-shrink-0 px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300"
-            :class="activeChantier === i
-              ? 'bg-brand-foret text-white shadow-md'
-              : 'bg-brand-clair text-gray-600 hover:bg-brand-foret/10 border border-brand-vif/20'"
-          >
-            {{ chantier.name }}
-          </button>
+        <div class="-mx-4 sm:mx-0 mb-8">
+          <div class="flex gap-2 sm:gap-3 overflow-x-auto pb-2 scrollbar-none px-4 sm:px-0"
+               style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+            <button
+              v-for="(chantier, i) in chantiers" :key="chantier.id"
+              @click="activeChantier = i"
+              class="flex-none whitespace-nowrap px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300"
+              :class="activeChantier === i
+                ? 'bg-brand-foret text-white shadow-md'
+                : 'bg-brand-clair text-gray-600 hover:bg-brand-foret/10 border border-brand-vif/20'"
+            >
+              {{ chantier.name }}
+            </button>
+            <!-- Espace de fin pour que le dernier bouton ne soit pas coupé -->
+            <div class="flex-none w-4 sm:hidden" />
+          </div>
         </div>
 
         <!-- Chantier actif -->
@@ -195,7 +200,7 @@
           <button
             v-for="cat in categories" :key="cat"
             @click="activeFilter = cat"
-            class="px-4 sm:px-5 py-2 rounded-full text-xs sm:text-base font-medium transition-all duration-300"
+            class="flex-none whitespace-nowrap px-4 sm:px-5 py-2 rounded-full text-xs sm:text-base font-medium transition-all duration-300"
             :class="activeFilter === cat
               ? 'bg-brand-foret text-white shadow-md'
               : 'bg-white text-gray-600 hover:bg-brand-foret/5 border border-gray-200'"
@@ -207,51 +212,60 @@
         <!-- Grille -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
           <div
-            v-for="(real, i) in filteredRealisations" :key="i"
+            v-for="(real, i) in paginatedRealisations" :key="i"
             v-motion :initial="{ opacity:0, y:24 }"
             :visibleOnce="{ opacity:1, y:0, transition:{ delay: (i % 3) * 80, duration:500 } }"
             class="group rounded-2xl overflow-hidden shadow-sm hover:shadow-xl
                    transition-all duration-300 border border-gray-100 bg-white"
           >
             <div class="relative aspect-[4/3] overflow-hidden select-none"
-                 @touchstart="onCardTouchStart($event)"
-                 @touchend="onCardTouchEnd($event, real)">
-              <!-- Hint swipe mobile -->
-              <div class="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 pointer-events-none
-                          flex items-center gap-1 bg-black/40 text-white/70 text-xs font-medium
-                          px-2 py-0.5 rounded-full backdrop-blur-sm sm:hidden">
-                <ChevronLeft class="w-2.5 h-2.5" /> Glisser <ChevronRight class="w-2.5 h-2.5" />
-              </div>
-              
-              <!-- Avant -->
-                <img
-                  :src="real.imgBefore"
-                  alt="Avant"
-                  class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-                  :style="real.showAfter ? 'opacity:0' : 'opacity:1'"
-                />
-                <!-- Après -->
-                <img
-                  :src="real.imgAfter"
-                  alt="Après"
-                  class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-                  :style="real.showAfter ? 'opacity:1' : 'opacity:0'"
-                />
+                 @mouseenter="real.showAfter = true"
+                 @mouseleave="real.showAfter = false"
+                 @touchend.prevent="toggleCard(real)">
 
-              <!-- Toggle -->
-              <div class="absolute top-2 sm:top-3 right-2 sm:right-3 flex gap-1.5">
-                <button @click="real.showAfter = false"
-                  class="px-2.5 sm:px-3 py-1 rounded-full text-[10px] font-bold transition-all duration-200"
-                  :class="!real.showAfter ? 'bg-white text-brand-foret shadow' : 'bg-black/30 text-white'">Avant</button>
-                <button @click="real.showAfter = true"
-                  class="px-2.5 sm:px-3 py-1 rounded-full text-[10px] font-bold transition-all duration-200"
-                  :class="real.showAfter ? 'bg-brand-vif text-white shadow' : 'bg-black/30 text-white'">Après</button>
-              </div>
+              <!-- Avant -->
+              <img
+                :src="real.imgBefore"
+                alt="Avant"
+                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                :style="real.showAfter ? 'opacity:0' : 'opacity:1'"
+              />
+              <!-- Après -->
+              <img
+                :src="real.imgAfter"
+                alt="Après"
+                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+                :style="real.showAfter ? 'opacity:1' : 'opacity:0'"
+              />
 
               <!-- Catégorie -->
               <div class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-brand-foret/80 text-white text-[10px]
                           font-semibold px-2 sm:px-2.5 py-1 rounded-full">
                 {{ real.category }}
+              </div>
+
+
+
+              <!-- Overlay bas : gradient + badge Avant/Après (desktop + mobile) -->
+              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+                <!-- Hint tap mobile uniquement -->
+                <div v-if="!real.showAfter"
+                     class="absolute bottom-3 left-3 flex items-center gap-1 bg-black/40 text-white/70 text-xs font-medium
+                            px-2 py-0.5 rounded-full backdrop-blur-sm sm:hidden pointer-events-none">
+                  Toucher pour voir après
+                </div>
+                <!-- Badge Avant/Après — toujours fixé en bas à droite -->
+                <div class="absolute bottom-3 right-3 text-[10px] font-bold px-2.5 py-1 rounded-full transition-all duration-300"
+                     :class="real.showAfter ? 'bg-brand-vif text-white' : 'bg-white/20 text-white'">
+                  {{ real.showAfter ? 'Après' : 'Avant' }}
+                </div>
+              </div>
+
+              <!-- Hint hover desktop -->
+              <div class="absolute top-3 right-3 bg-black/40 text-white/80 text-[10px] px-2.5 py-1
+                          rounded-full transition-opacity duration-300
+                          opacity-100 group-hover:opacity-0 hidden sm:block pointer-events-none">
+                Survoler pour voir après
               </div>
             </div>
 
@@ -265,6 +279,21 @@
               <p class="text-gray-500 text-sm leading-relaxed font-poppins line-clamp-2 sm:line-clamp-none">{{ real.desc }}</p>
             </div>
           </div>
+        </div>
+
+        <!-- Voir plus -->
+        <div v-if="filteredRealisations.length > visibleCount"
+             class="mt-10 sm:mt-16 text-center">
+          <button @click="visibleCount += 9"
+                  class="inline-flex items-center gap-2 px-7 sm:px-14 py-3 rounded-full
+                         bg-brand-foret text-white font-semibold text-sm
+                         hover:bg-brand-vif transition-all duration-300 shadow-md hover:shadow-brand-vif/30">
+            <Plus class="w-4 h-4" />
+            Voir plus
+            <span class="text-white/60 text-xs">
+              ({{ Math.min(filteredRealisations.length - visibleCount, 9) }} de plus)
+            </span>
+          </button>
         </div>
       </div>
     </section>
@@ -296,16 +325,35 @@
               <X class="w-7 h-7" />
             </button>
 
-            <!-- Image (swipeable sur mobile) -->
-            <div class="rounded-2xl overflow-hidden aspect-[4/3] flex items-center justify-center select-none"
-                 :class="lightbox.photo?.bg"
-                 @touchstart="onLightboxTouchStart($event)"
-                 @touchend="onLightboxTouchEnd($event)">
-              <div class="text-center text-white/30">
-                <Image class="w-16 h-16 mx-auto mb-2" />
-                <p class="text-base">{{ lightbox.photo?.label }}</p>
-                <p class="text-sm mt-1 opacity-60">{{ lightbox.photo?.etape }}</p>
+            <!-- Image (tappable sur mobile) -->
+            <div class="rounded-2xl overflow-hidden aspect-[4/3] select-none relative">
+              <img
+                v-if="lightbox.photo?.src"
+                :src="lightbox.photo.src"
+                :alt="lightbox.photo.label"
+                class="w-full h-full object-cover"
+              />
+              <!-- Fallback si pas encore de src (chantier sans photo) -->
+              <div v-else class="w-full h-full flex items-center justify-center bg-gray-800 text-white/30">
+                <div class="text-center">
+                  <Image class="w-16 h-16 mx-auto mb-2" />
+                  <p class="text-base">{{ lightbox.photo?.label }}</p>
+                  <p class="text-sm mt-1 opacity-60">{{ lightbox.photo?.etape }}</p>
+                </div>
               </div>
+              <!-- Badge étape -->
+              <div v-if="lightbox.photo?.etape"
+                   class="absolute top-3 left-3 bg-brand-foret/80 text-white text-xs
+                          font-semibold px-3 py-1 rounded-full backdrop-blur-sm">
+                {{ lightbox.photo.etape }}
+              </div>
+              <!-- Zones de tap mobile gauche / droite -->
+              <button @touchend.prevent="prevPhoto"
+                      :disabled="lightbox.photoIndex === 0"
+                      class="absolute inset-y-0 left-0 w-1/2 sm:hidden disabled:opacity-0" />
+              <button @touchend.prevent="nextPhoto"
+                      :disabled="lightbox.photoIndex === chantiers[lightbox.chantierIndex]?.photos.length - 1"
+                      class="absolute inset-y-0 right-0 w-1/2 sm:hidden disabled:opacity-0" />
             </div>
 
             <!-- Navigation -->
@@ -318,7 +366,7 @@
                 <span class="text-white/40 text-base">
                   {{ lightbox.photoIndex + 1 }} / {{ chantiers[lightbox.chantierIndex]?.photos.length }}
                 </span>
-                <p class="text-white/25 text-xs mt-0.5 sm:hidden">← Glisser →</p>
+                <p class="text-white/25 text-xs mt-0.5 sm:hidden">← Toucher →</p>
               </div>
               <button @click="nextPhoto"
                       :disabled="lightbox.photoIndex === chantiers[lightbox.chantierIndex]?.photos.length - 1"
@@ -335,10 +383,10 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import {
   CheckCircle, MapPin, PhoneCall, ChevronRight, ChevronLeft, Check,
-  PaintBucket, Grid2X2, Building2, Sparkles, Image, ZoomIn, Clock, X
+  PaintBucket, Grid2X2, Building2, Sparkles, Image, ZoomIn, Clock, X, Plus
 } from 'lucide-vue-next'
 
 import iconPeinture    from '@/assets/images/peinture.svg'
@@ -350,38 +398,38 @@ import iconAmenagement from '@/assets/images/amenagement.svg'
 const chantiers = [
   {
     id: 1,
-    name: 'Rénovation salon',
+    name: 'Rénovation chambre',
     category: 'Peinture intérieure',
     icon: iconPeinture,
-    location: 'Mantes-la-Jolie (78)',
-    duree: '3 jours de chantier',
-    desc: 'Rénovation complète d\'un salon de 35m² : préparation des murs, enduit de lissage, 2 couches de peinture finition blanc satiné et mise en valeur d\'un mur accent couleur.',
-    travaux: ['Rebouchage et ponçage', 'Application enduit de lissage', 'Impression fond blanc', '2 couches peinture satin', 'Mur accent couleur profonde'],
+    location: 'Les Mureaux (78)',
+    duree: '? jours de chantier',
+    desc: 'Rénovation complète d\'une chambre : préparation des murs, pose de placo et de plaques de doublage en polystyrène, travaux de menuiserie avec création de rebords de fenêtre et réparation de l\'armoire, application de peinture blanche satinée et mise en valeur d’un mur avec papier peint décoratif.',
+    travaux: ['Rebouchage et ponçage', 'Isolation plaque doublage polyester', 'Pose de placo BA13', 'Travaux de menuiseries', 'Couches peinture blanc satiné', 'Mur en papier peint décoratif'],
     photos: [
       { label: 'Vue d\'ensemble avant', etape: 'Avant',       src: '/photo/realisations/travaux_complet/avant.jpeg' },
       { label: 'Préparation murs',      etape: 'Préparation',  src: '/photo/realisations/travaux_complet/preparation.png' },
-      { label: 'Enduit de lissage',     etape: 'Enduit',       src: '/photo/realisations/travaux_complet/enduit.jpeg' },
-      { label: 'Première couche',       etape: '1ère couche',  src: '/photo/realisations/travaux_complet/couche.jpeg' },
-      { label: 'Résultat final',        etape: 'Après',        src: '/photo/realisations/travaux_complet/apres.jpeg' },
-      { label: 'Détail finition',       etape: 'Finition',     src: '/photo/realisations/travaux_complet/apres.png' },
+      { label: 'Isolation plaque doublage polyester',     etape: 'Isolation',       src: '/photo/realisations/travaux_complet/enduit.jpeg' },
+      { label: 'Isolation plaque doublage polyester',       etape: 'Isolation',  src: '/photo/realisations/travaux_complet/couche.jpeg' },
+      { label: 'Peinture et papier peint',        etape: 'Peinture',        src: '/photo/realisations/travaux_complet/apres.jpeg' },
+      { label: 'Résultat final',       etape: 'Finition',     src: '/photo/realisations/travaux_complet/finition.jpeg' },
     ]
   },
   {
     id: 2,
-    name: 'Ravalement façade',
-    category: 'Ravalement',
-    icon: iconRavalement,
-    location: 'Poissy (78)',
-    duree: '1 semaine de chantier',
-    desc: 'Ravalement complet d\'une maison individuelle : nettoyage haute pression, traitement des fissures, application d\'un enduit monocouche taloché et finition peinture façade.',
-    travaux: ['Nettoyage haute pression', 'Traitement fissures', 'Application enduit', 'Peinture façade 2 couches', 'Finitions autour menuiseries'],
+    name: 'Aménagement d\'un atelier',
+    category: 'Aménagement intérieur',
+    icon: iconAmenagement,
+    location: 'Saint-Rémy-l\'Honoré (78)',
+    duree: '? jours de chantier',
+    desc: 'Aménagement d\'un atelier avec pose de parquet, peinture, montage de meubles, traveaux de menuiserie création d\'étagères pour optimiser l\'espace de travail et améliorer l\'ergonomie.',
+    travaux: ['Pose de parquet', 'Peinture', 'Travaux de menuiserie', 'Création d\'étagères', 'Montage de meubles', 'Finitions'],
     photos: [
-      { label: 'Façade avant',           etape: 'Avant',       bg: 'bg-gray-500' },
-      { label: 'Nettoyage HP',           etape: 'Nettoyage',   bg: 'bg-slate-500' },
-      { label: 'Reprise fissures',       etape: 'Réparation',  bg: 'bg-stone-500' },
-      { label: 'Application enduit',     etape: 'Enduit',      bg: 'bg-green-900' },
-      { label: '1ère couche peinture',   etape: '1ère couche', bg: 'bg-green-800' },
-      { label: 'Résultat final',         etape: 'Après',       bg: 'bg-green-700' },
+      { label: 'Atelier avant',           etape: 'Avant',        src: '/photo/realisations/travaux1_complet/avant.png' },
+      { label: 'Montage de meubles',           etape: 'Montage',   src: '/photo/realisations/travaux1_complet/montage.jpeg' },
+      { label: 'Création d\'étagères',       etape: 'menuiserie',  src: '/photo/realisations/travaux1_complet/menuiserie.jpeg' },
+      { label: 'Application peinture',     etape: 'peinture',      src: '/photo/realisations/travaux1_complet/peinture1.jpeg' },
+      { label: 'Application peinture',   etape: 'peinture', src: '/photo/realisations/travaux1_complet/peinture.jpeg' },
+      { label: 'Résultat final',         etape: 'Après',       src: '/photo/realisations/travaux1_complet/finition.jpeg' },
     ]
   },
 ]
@@ -414,33 +462,16 @@ function nextPhoto() {
 }
 
 // ─── Touch / Swipe ───
-const touchStartX = ref(0)
 
-// Lightbox swipe
-function onLightboxTouchStart(e) {
-  touchStartX.value = e.changedTouches[0].clientX
-}
-function onLightboxTouchEnd(e) {
-  const delta = e.changedTouches[0].clientX - touchStartX.value
-  if (Math.abs(delta) < 40) return
-  if (delta < 0) nextPhoto()
-  else prevPhoto()
-}
-
-// Cartes Avant/Après swipe
-const cardTouchStartX = ref(0)
-function onCardTouchStart(e) {
-  cardTouchStartX.value = e.changedTouches[0].clientX
-}
-function onCardTouchEnd(e, real) {
-  const delta = e.changedTouches[0].clientX - cardTouchStartX.value
-  if (Math.abs(delta) < 40) return
-  real.showAfter = delta < 0
+// Cartes Avant/Après — tap pour toggle (géré directement dans le template)
+function toggleCard(real) {
+  const wasShowing = real.showAfter
+  realisations.value.forEach(r => { r.showAfter = false })
+  real.showAfter = !wasShowing
 }
 
 
 const categories   = ['Tous', 'Peinture', 'Isolation', 'Revêtement', 'Ravalement', 'Aménagement']
-const activeFilter = ref('Tous')
 
 const realisations = ref([
   
@@ -651,12 +682,30 @@ const realisations = ref([
   desc: 'Aménagement d\'un atelier avec pose de parquet, peinture, traveaux de menuiserie création d\'étagères pour optimiser l\'espace de travail et améliorer l\'ergonomie.',
   showAfter: false
 },
+{ 
+  title: 'Revêtement d\'escalier',
+  location: 'Versailles (78)',
+  category: 'Revêtement',
+  imgBefore: '/photo/realisations/escalier5_avant.png',
+  imgAfter:  '/photo/realisations/escalier5_apres.jpeg',
+  desc: 'Pose de revêtement en moqette sur des marches en bois pour un rendu moderne, chaleureux et facile d’entretien.',
+  showAfter: false
+},
 ])
+
+const activeFilter = ref('Tous')
+const visibleCount  = ref(9)
+
+watch(activeFilter, () => { visibleCount.value = 9 })
 
 const filteredRealisations = computed(() =>
   activeFilter.value === 'Tous'
     ? realisations.value
     : realisations.value.filter(r => r.category === activeFilter.value)
+)
+
+const paginatedRealisations = computed(() =>
+  filteredRealisations.value.slice(0, visibleCount.value)
 )
 </script>
 

@@ -30,7 +30,7 @@
           class="group relative rounded-2xl overflow-hidden cursor-pointer"
           @mouseenter="real.showAfter = true"
           @mouseleave="real.showAfter = false"
-          @click="real.showAfter = !real.showAfter"
+          @touchend.prevent="real.showAfter = !real.showAfter"
         >
           <!-- Image (placeholder coloré) -->
           <div class="aspect-[4/3] relative overflow-hidden">
