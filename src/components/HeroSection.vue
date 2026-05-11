@@ -12,7 +12,7 @@
     </div>
 
     <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 pt-24 sm:pt-28 pb-16 w-full">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center">
 
         <!-- ─── Colonne gauche — texte ─── -->
         <div>
@@ -32,7 +32,7 @@
           <h1
             v-motion :initial="{ opacity:0, y:28 }"
             :enter="{ opacity:1, y:0, transition:{ delay:350, duration:700 } }"
-            class="font-display text-4xl sm:text-5xl lg:text-[5rem] xl:text-[5.5rem]
+            class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[5.5rem]
                    text-white leading-[1.0] mb-5 sm:mb-6"
           >
             Votre artisan<br/>
@@ -87,7 +87,7 @@
         <div
           v-motion :initial="{ opacity:0, x:40 }"
           :enter="{ opacity:1, x:0, transition:{ delay:500, duration:800 } }"
-          class="hidden lg:block relative h-[620px]"
+          class="hidden md:block relative h-[520px] lg:h-[620px]"
         >
           <!-- Card grande — gauche -->
           <div class="absolute left-0 top-0 w-[54%] h-[60%] rounded-2xl overflow-hidden

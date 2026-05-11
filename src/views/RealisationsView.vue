@@ -94,7 +94,7 @@
         <!-- Chantier actif -->
         <Transition name="fade-chantier" mode="out-in">
           <div :key="activeChantier">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-8">
               <!-- Infos chantier -->
               <div class="lg:col-span-1 bg-brand-clair rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
                 <div>

@@ -6,7 +6,7 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
 
       <!-- Logo principal -->
-      <RouterLink to="/" class="hidden md:flex items-center">
+      <RouterLink to="/" class="hidden lg:flex items-center">
         <img
           :src="logoWhite"
           alt="Da Silva Leite — Entreprise de peinture"
@@ -15,8 +15,8 @@
         />
       </RouterLink>
 
-      <!-- Logo secondaire — mobile uniquement -->
-      <RouterLink to="/" class="md:hidden flex items-center">
+      <!-- Logo secondaire — mobile + tablette -->
+      <RouterLink to="/" class="lg:hidden flex items-center">
         <img
           :src="logoSecondary"
           alt="Da Silva Leite"
@@ -26,7 +26,7 @@
       </RouterLink>
 
       <!-- Desktop nav -->
-      <div class="hidden md:flex items-center gap-8 ml-32">
+      <div class="hidden lg:flex items-center gap-5 xl:gap-8">
         <RouterLink
           v-for="link in navLinks" :key="link.to" :to="link.to"
           class="text-base font-medium text-white/80 hover:text-white relative group transition-colors"
@@ -43,8 +43,8 @@
         </a>
       </div>
 
-      <!-- Mobile burger -->
-      <button class="md:hidden text-white p-2" @click="mobileOpen = !mobileOpen" aria-label="Menu">
+      <!-- Mobile/tablette burger -->
+      <button class="lg:hidden text-white p-2" @click="mobileOpen = !mobileOpen" aria-label="Menu">
         <Menu v-if="!mobileOpen" class="w-6 h-6" />
         <X    v-else             class="w-6 h-6" />
       </button>
@@ -53,7 +53,7 @@
     <!-- Mobile menu -->
     <Transition name="slide-down">
       <div v-if="mobileOpen"
-           class="md:hidden bg-brand-foret border-t border-white/10 px-4 sm:px-6 py-6 flex flex-col gap-5">
+           class="lg:hidden bg-brand-foret border-t border-white/10 px-4 sm:px-6 py-6 flex flex-col gap-5">
         <RouterLink
           v-for="link in navLinks" :key="link.to" :to="link.to"
           class="font-display text-3xl text-white hover:text-brand-vif transition-colors"
@@ -74,7 +74,7 @@
     <Transition name="backdrop-fade">
       <div
         v-if="mobileOpen"
-        class="fixed inset-0 z-40 md:hidden"
+        class="fixed inset-0 z-40 lg:hidden"
         style="backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); background: rgba(0,0,0,0.35);"
         @click="mobileOpen = false"
       />

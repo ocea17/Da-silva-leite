@@ -1,7 +1,7 @@
 <template>
   <section id="about" class="py-16 sm:py-24">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
 
         <!-- Visual -->
         <div
@@ -42,7 +42,7 @@
         <div
           v-motion :initial="{ opacity:0, y:30 }"
           :visibleOnce="{ opacity:1, y:0, transition:{ delay:200, duration:700 } }"
-          class="mt-8 sm:mt-10 lg:mt-0"
+          class="mt-8 sm:mt-10 md:mt-0"
         >
           <div class="section-label mb-4">À propos</div>
           <h2 class="section-title mb-5 sm:mb-6">

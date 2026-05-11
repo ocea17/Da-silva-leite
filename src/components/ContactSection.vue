@@ -1,7 +1,7 @@
 <template>
   <section id="contact" class="bg-brand-clair py-16 sm:py-24">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
 
         <!-- Infos -->
         <div
