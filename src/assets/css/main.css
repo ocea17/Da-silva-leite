@@ -28,10 +28,18 @@
 
 /* ─── Composants réutilisables via @layer components ─── */
 @layer components {
+
+  /* ──────────────────────────────────────────────────────
+     BOUTONS
+  ────────────────────────────────────────────────────── */
+
   /* Bouton principal vert vif */
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg
-           bg-brand-vif text-white font-semibold text-sm
+    @apply inline-flex items-center gap-2
+           px-5 py-2.5 text-sm        /* mobile */
+           sm:px-6 sm:py-3            /* ≥640px  */
+           rounded-lg
+           bg-brand-vif text-white font-semibold
            transition-all duration-300
            hover:bg-green-600 hover:-translate-y-0.5
            hover:shadow-lg hover:shadow-brand-vif/30;
@@ -39,11 +47,18 @@
 
   /* Bouton outline blanc (pour fond sombre) */
   .btn-outline {
-    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg
-           border border-white/40 text-white font-semibold text-sm
+    @apply inline-flex items-center gap-2
+           px-5 py-2.5 text-sm        /* mobile */
+           sm:px-6 sm:py-3            /* ≥640px  */
+           rounded-lg
+           border border-white/40 text-white font-semibold
            transition-all duration-300
            hover:bg-white/10 hover:border-white;
   }
+
+  /* ──────────────────────────────────────────────────────
+     TYPOGRAPHIE DE SECTION
+  ────────────────────────────────────────────────────── */
 
   /* Label de section (petit texte vert + trait) */
   .section-label {
@@ -55,8 +70,118 @@
     @apply block w-6 h-0.5 bg-brand-vif rounded-full;
   }
 
-  /* Titre de section display */
+  /* Titre de section display — responsive complet */
   .section-title {
-    @apply font-display text-4xl md:text-5xl text-brand-foret leading-tight;
+    @apply font-display leading-tight text-brand-foret
+           text-3xl          /* mobile  <640px  */
+           sm:text-4xl       /* tablette portrait ≥640px  */
+           md:text-4xl       /* tablette ≥768px  */
+           lg:text-5xl;      /* desktop ≥1024px  */
+  }
+
+  /* ──────────────────────────────────────────────────────
+     GRILLES RÉUTILISABLES
+     Utilise ces classes dans tes templates Vue à la place
+     de grilles codées en dur.
+  ────────────────────────────────────────────────────── */
+
+  /* Grille 2 colonnes tablette / 3 colonnes desktop */
+  .grid-cards {
+    @apply grid gap-6
+           grid-cols-1          /* mobile  */
+           sm:grid-cols-2       /* tablette portrait ≥640px */
+           lg:grid-cols-3;      /* desktop ≥1024px */
+  }
+
+  /* Grille 2 colonnes à partir du md (utilisée pour les sections 50/50) */
+  .grid-split {
+    @apply grid gap-8 items-center
+           grid-cols-1          /* mobile  */
+           md:grid-cols-2;      /* tablette paysage + desktop */
+  }
+
+  /* Grille de réalisations (galerie photos) */
+  .grid-gallery {
+    @apply grid gap-4
+           grid-cols-1          /* mobile  */
+           sm:grid-cols-2       /* tablette portrait */
+           md:grid-cols-3       /* tablette paysage */
+           xl:grid-cols-4;      /* grand écran */
+  }
+
+  /* ──────────────────────────────────────────────────────
+     SECTIONS — PADDING VERTICAL ADAPTATIF
+  ────────────────────────────────────────────────────── */
+
+  .section-pad {
+    @apply py-14               /* mobile  */
+           sm:py-16            /* tablette portrait */
+           md:py-20            /* tablette paysage */
+           lg:py-24;           /* desktop */
+  }
+
+  /* ──────────────────────────────────────────────────────
+     CONTENEUR CENTRÉ AVEC PADDING HORIZONTAL
+     Remplace ou complète le container Tailwind.
+  ────────────────────────────────────────────────────── */
+
+  .container-site {
+    @apply mx-auto w-full
+           px-4                /* mobile  */
+           sm:px-6             /* tablette portrait */
+           md:px-8             /* tablette paysage */
+           lg:px-12            /* desktop */
+           xl:px-16            /* grand écran */
+           max-w-7xl;
+  }
+
+  /* ──────────────────────────────────────────────────────
+     NAVBAR
+  ────────────────────────────────────────────────────── */
+
+  /* Hauteur de la barre de navigation */
+  .navbar-height {
+    @apply h-16 sm:h-18 lg:h-20;
+  }
+
+  /* Lien nav desktop */
+  .nav-link {
+    @apply text-sm font-medium text-gray-700
+           hover:text-brand-vif transition-colors duration-200
+           relative after:absolute after:bottom-0 after:left-0
+           after:h-0.5 after:w-0 after:bg-brand-vif
+           after:transition-all after:duration-300
+           hover:after:w-full;
+  }
+
+  /* ──────────────────────────────────────────────────────
+     CARDS SERVICES
+  ────────────────────────────────────────────────────── */
+
+  .service-card {
+    @apply bg-white rounded-2xl p-6 sm:p-8
+           shadow-sm hover:shadow-md
+           border border-gray-100
+           transition-all duration-300
+           hover:-translate-y-1;
+  }
+
+  /* ──────────────────────────────────────────────────────
+     HERO — utilitaires spécifiques
+  ────────────────────────────────────────────────────── */
+
+  .hero-title {
+    @apply font-display leading-none text-white
+           text-5xl            /* mobile  */
+           sm:text-6xl         /* tablette portrait */
+           md:text-7xl         /* tablette paysage */
+           lg:text-8xl;        /* desktop */
+  }
+
+  .hero-subtitle {
+    @apply text-white/80 font-light
+           text-base           /* mobile  */
+           sm:text-lg          /* tablette */
+           lg:text-xl;         /* desktop */
   }
 }
