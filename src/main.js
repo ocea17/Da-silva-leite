@@ -3,6 +3,8 @@ import { MotionPlugin } from '@vueuse/motion'
 import router from './router'
 import App from './App.vue'
 import './assets/css/main.css'
+import emailjs from '@emailjs/browser'
+emailjs.init('R5WloMC3WIMuL9Poy')
 
 // ─── Easter egg console ───
 console.log(

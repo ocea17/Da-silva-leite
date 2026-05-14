@@ -75,21 +75,28 @@
                        transition-all placeholder-gray-300" />
             </div>
 
-            <button type="submit" :disabled="sent"
+            <!-- Bouton avec états loading / sent / error -->
+            <button type="submit" :disabled="loading || sent"
               class="w-full flex items-center justify-center gap-2 py-3 sm:py-4 rounded-lg
                      bg-brand-foret text-white font-semibold text-sm
                      hover:bg-brand-vif transition-all duration-300
                      hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-vif/30
                      disabled:opacity-60 disabled:cursor-not-allowed">
               <Send class="w-4 h-4" />
-              {{ sent ? 'Message envoyé ✓' : 'Envoyer ma demande' }}
+              {{ loading ? 'Envoi en cours…' : sent ? 'Message envoyé ✓' : 'Envoyer ma demande' }}
             </button>
+
+            <!-- Message d'erreur -->
+            <p v-if="error" class="text-xs text-red-500 text-center">
+              Une erreur est survenue. Contactez-nous directement au 06 64 84 16 78.
+            </p>
 
             <p class="text-[11px] text-gray-400 text-center leading-relaxed">
               Réponse rapide · Devis gratuit sans engagement · Données confidentielles (RGPD)
             </p>
           </form>
         </div>
+
       </div>
     </div>
   </section>
@@ -98,20 +105,49 @@
 <script setup>
 import { ref } from 'vue'
 import { Phone, Mail, MapPin, Send } from 'lucide-vue-next'
+import emailjs from '@emailjs/browser'
 
-const sent = ref(false)
-const form = ref({ name: '', phone: '', email: '', message: '' })
+const EMAILJS_SERVICE_ID  = 'service_czts6m3'
+const EMAILJS_TEMPLATE_ID = 'template_lilm95e'
+const EMAILJS_PUBLIC_KEY  = 'R5WloMC3WIMuL9Poy'
+
+const sent    = ref(false)
+const loading = ref(false)
+const error   = ref(false)
+const form    = ref({ name: '', phone: '', email: '', message: '' })
 
 const contactCards = [
-  { label: 'Téléphone', value: '06 64 84 16 78',            href: 'tel:0664841678',                icon: Phone  },
-  { label: 'Email',     value: 'peinture.sld@gmail.com',    href: 'mailto:peinture.sld@gmail.com', icon: Mail   },
-  { label: 'Zone',      value: 'Yvelines (78) — Île-de-France', href: '#',                         icon: MapPin },
+  { label: 'Téléphone', value: '06 64 84 16 78',                href: 'tel:0664841678',                icon: Phone  },
+  { label: 'Email',     value: 'peinture.sld@gmail.com',        href: 'mailto:peinture.sld@gmail.com', icon: Mail   },
+  { label: 'Zone',      value: 'Yvelines (78) — Île-de-France', href: 'https://maps.app.goo.gl/atCaEC1fY5XHvfjv9', icon: MapPin },
 ]
 
-function handleSubmit() {
-  // TODO: intégrer EmailJS (semaine 5)
-  console.log('Form submitted:', form.value)
-  sent.value = true
-  setTimeout(() => { sent.value = false }, 4000)
+async function handleSubmit() {
+  loading.value = true
+  error.value   = false
+
+  try {
+    await emailjs.send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      {
+        from_name:  form.value.name,
+        phone:      form.value.phone,
+        from_email: form.value.email,
+        email:      form.value.email,
+        message:    form.value.message,
+      },
+      EMAILJS_PUBLIC_KEY
+    )
+    sent.value = true
+    form.value = { name: '', phone: '', email: '', message: '' }
+    setTimeout(() => { sent.value = false }, 5000)
+  } catch (err) {
+    console.error('EmailJS error:', err)
+    error.value = true
+    setTimeout(() => { error.value = false }, 5000)
+  } finally {
+    loading.value = false
+  }
 }
 </script>
