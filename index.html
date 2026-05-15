@@ -3,16 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href="/fonts/bebas-neue-400.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="preload" href="/fonts/poppins-400.woff2"    as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="preload" href="/fonts/poppins-500.woff2"    as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="preload" href="/fonts/poppins-600.woff2"    as="font" type="font/woff2" crossorigin="anonymous" />
+  <link rel="preload" href="/fonts/poppins-700.woff2"    as="font" type="font/woff2" crossorigin="anonymous" />
   <title>Da Silva Leite — Artisan Peintre Yvelines (78)</title>
   <meta name="description" content="Artisan peintre dans les Yvelines depuis 2007. Peinture intérieure, extérieure, ravalement et décoration. Devis gratuit." />
 
   <!-- ─── Open Graph ─── -->
   <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://dasilva-leite.fr/" />
+  <meta property="og:url"         content="https://peinturesld.oceaneleite.fr/" />
   <meta property="og:title"       content="Da Silva Leite — Artisan Peintre dans les Yvelines" />
   <meta property="og:description" content="Artisan peintre indépendant dans les Yvelines depuis 2007. Peinture intérieure et extérieure, ravalement, revêtements. Devis gratuit." />
   <meta property="og:image"       content="https://peinturesld.oceaneleite.fr/og-image.png" />
-  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:locale"      content="fr_FR" />
 
@@ -22,10 +27,29 @@
   <meta name="twitter:description" content="Artisan peintre dans les Yvelines depuis 2007. Devis gratuit." />
   <meta name="twitter:image"       content="https://peinturesld.oceaneleite.fr/og-image.png" />
 
+  <style>
+    @keyframes spin { to { transform: rotate(360deg) } }
+  </style>
 </head>
-<body class="font-poppins bg-white text-gray-800 antialiased">
+<body class="font-poppins bg-[#1D3C24] text-gray-800 antialiased">
+
+  <!-- Loader EN DEHORS de #app -->
+  <div id="app-loader" style="
+    position:fixed; inset:0;
+    background:#1D3C24;
+    display:flex; align-items:center; justify-content:center;
+    z-index:9999; transition:opacity 0.3s ease;
+  ">
+    <div style="
+      width:36px; height:36px;
+      border:3px solid rgba(109,195,25,0.25);
+      border-top-color:#6DC319;
+      border-radius:50%;
+      animation:spin 0.75s linear infinite;
+    "></div>
+  </div>
+
   <div id="app"></div>
   <script type="module" src="/src/main.js"></script>
 </body>
 </html>
-<meta property="og:image" content="https://whacking-quintuple-script.ngrok-free.app/og-image.png" />
