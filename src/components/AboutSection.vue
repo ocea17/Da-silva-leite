@@ -1,28 +1,27 @@
 <template>
-  <section id="about" class="py-16 sm:py-24">
+  <section id="about" class="py-16 sm:py-24 bg-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
 
         <!-- Visual -->
-        <!-- ✅ x:-40 retiré — opacity uniquement pour éviter le CLS -->
         <div
           v-motion :initial="{ opacity:0 }"
           :visibleOnce="{ opacity:1, transition:{ duration:700 } }"
           class="relative mx-auto w-full max-w-md lg:max-w-none"
         >
           <!-- Photo principale — Salomon -->
-          <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden group">
+          <div class="w-full aspect-[5/4] rounded-2xl overflow-hidden group">
             <picture>
-              <!-- ✅ Source WebP correcte pour salomon -->
               <source srcset="/photo/about/salomon.webp" type="image/webp" />
               <img
-                src="/photo/about/salomon.jpeg"
+                src="/photo/about/salomon.webp"
                 alt="Salomon Leite, artisan peintre"
                 width="896"
                 height="672"
                 loading="lazy"
                 decoding="async"
-                class="w-full h-full object-cover object-[center_16%] transition-transform duration-700 group-hover:scale-105"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                style="object-position: center 10%;"
               />
             </picture>
           </div>

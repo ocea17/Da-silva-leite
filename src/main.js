@@ -16,12 +16,3 @@ const app = createApp(App)
 app.use(MotionPlugin)
 app.use(router)
 app.mount('#app')
-
-// Attend la résolution de la 1ère route, puis fade out le loader
-router.isReady().then(() => {
-  const loader = document.getElementById('app-loader')
-  if (loader) {
-    loader.style.opacity = '0'
-    setTimeout(() => loader.remove(), 300)
-  }
-})
