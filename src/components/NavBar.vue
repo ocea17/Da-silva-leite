@@ -5,11 +5,13 @@
   >
     <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
 
-      <!-- Logo principal -->
+      <!-- Logo principal — desktop -->
       <RouterLink to="/" class="hidden lg:flex items-center">
         <img
           :src="logoWhite"
           alt="Da Silva Leite — Entreprise de peinture"
+          width="160"
+          height="56"
           class="h-8 sm:h-14 w-auto transition-all duration-300"
           :class="scrolled ? 'sm:h-12' : 'sm:h-14'"
         />
@@ -20,6 +22,8 @@
         <img
           :src="logoSecondary"
           alt="Da Silva Leite"
+          width="40"
+          height="40"
           class="h-10 w-auto transition-all duration-300"
           :class="scrolled ? 'h-8' : 'h-10'"
         />
@@ -86,7 +90,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { Menu, X, PhoneCall } from 'lucide-vue-next'
-import logoWhite    from '@/assets/images/logo_principale_blanc.svg'
+import logoWhite     from '@/assets/images/logo_principale_blanc.svg'
 import logoSecondary from '@/assets/images/logo_secondaire_blanc.svg'
 
 const scrolled   = ref(false)
@@ -94,11 +98,11 @@ const mobileOpen = ref(false)
 const route      = useRoute()
 
 const navLinks = [
-  { to: '/',             label: 'Accueil'       },
-  { to: '/services',     label: 'Nos services'  },
-  { to: '/realisations', label: 'Réalisations'  },
-  { to: '/#about',       label: 'À propos'      },
-  { to: '/#contact',     label: 'Contact'       },
+  { to: '/',             label: 'Accueil'      },
+  { to: '/services',     label: 'Nos services' },
+  { to: '/realisations', label: 'Réalisations' },
+  { to: '/#about',       label: 'À propos'     },
+  { to: '/#contact',     label: 'Contact'      },
 ]
 
 function isActive(to) {

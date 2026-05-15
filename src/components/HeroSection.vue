@@ -18,8 +18,8 @@
         <div>
           <!-- Badge -->
           <div
-            v-motion :initial="{ opacity:0, y:20 }"
-            :enter="{ opacity:1, y:0, transition:{ delay:200, duration:600 } }"
+            v-motion :initial="{ opacity:0 }"
+            :enter="{ opacity:1, transition:{ delay:200, duration:600 } }"
             class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 sm:mb-8
                    bg-brand-vif/18 border border-brand-vif/40
                    text-brand-vif text-xs font-semibold tracking-widest uppercase"
@@ -30,8 +30,8 @@
 
           <!-- H1 -->
           <h1
-            v-motion :initial="{ opacity:0, y:28 }"
-            :enter="{ opacity:1, y:0, transition:{ delay:350, duration:700 } }"
+            v-motion :initial="{ opacity:0 }"
+            :enter="{ opacity:1, transition:{ delay:350, duration:700 } }"
             class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[5.5rem]
                    text-white leading-[1.0] mb-5 sm:mb-6"
           >
@@ -42,8 +42,8 @@
 
           <!-- Sous-titre -->
           <p
-            v-motion :initial="{ opacity:0, y:20 }"
-            :enter="{ opacity:1, y:0, transition:{ delay:550, duration:600 } }"
+            v-motion :initial="{ opacity:0 }"
+            :enter="{ opacity:1, transition:{ delay:550, duration:600 } }"
             class="text-white/65 text-sm sm:text-base leading-loose max-w-md mb-8 sm:mb-10"
           >
             Peinture intérieure &amp; extérieure, revêtements, ravalement de façade
@@ -52,11 +52,11 @@
 
           <!-- CTA -->
           <div
-            v-motion :initial="{ opacity:0, y:16 }"
-            :enter="{ opacity:1, y:0, transition:{ delay:700, duration:600 } }"
+            v-motion :initial="{ opacity:0 }"
+            :enter="{ opacity:1, transition:{ delay:700, duration:600 } }"
             class="flex flex-wrap gap-3 sm:gap-4 mb-10 sm:mb-14"
           >
-            <a href="#contact" class="btn-primary">
+            <a href="#contact" class="btn-primary-black">
               <CheckCircle class="w-4 h-4" />
               Devis gratuit
             </a>
@@ -84,33 +84,48 @@
         </div>
 
         <!-- ─── Colonne droite — mosaïque d'images ─── -->
+        <!-- ✅ x:40 retiré — opacity uniquement pour éviter le CLS -->
         <div
-          v-motion :initial="{ opacity:0, x:40 }"
-          :enter="{ opacity:1, x:0, transition:{ delay:500, duration:800 } }"
+          v-motion :initial="{ opacity:0 }"
+          :enter="{ opacity:1, transition:{ delay:500, duration:800 } }"
           class="hidden md:block relative h-[520px] lg:h-[620px]"
         >
           <!-- Card grande — gauche -->
           <div class="absolute left-0 top-0 w-[54%] h-[60%] rounded-2xl overflow-hidden
                       shadow-2xl group cursor-default">
-            <img
-              src="/photo/hero/peinture-chambre.jpeg"
-              alt="Peinture intérieure d'une chambre dans les Yvelines par Da Silva Leite"
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
+            <picture>
+              <!-- ✅ Bonne source WebP pour chaque image -->
+              <source srcset="/photo/hero/peinture-chambre.webp" type="image/webp" />
+              <img
+                src="/photo/hero/peinture-chambre.jpeg"
+                alt="Peinture intérieure d'une chambre dans les Yvelines par Da Silva Leite"
+                width="534"
+                height="400"
+                fetchpriority="high"
+                decoding="async"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </picture>
             <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-4">
               <span class="text-white text-xs font-semibold">Peinture intérieure</span>
             </div>
           </div>
 
           <!-- Card petite — haut droite -->
-          <!-- ✅ alt corrigé : était "Peinture", trop générique -->
           <div class="absolute right-0 top-0 w-[42%] h-[30%] rounded-2xl overflow-hidden
                       shadow-xl group cursor-default">
-            <img
-              src="/photo/hero/escalier.jpeg"
-              alt="Revêtement d'escalier intérieur réalisé par Da Silva Leite"
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
+            <picture>
+              <source srcset="/photo/hero/escalier.webp" type="image/webp" />
+              <img
+                src="/photo/hero/escalier.jpeg"
+                alt="Revêtement d'escalier intérieur réalisé par Da Silva Leite"
+                width="534"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </picture>
             <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-3">
               <span class="text-white text-xs font-semibold">Peinture intérieure</span>
             </div>
@@ -119,11 +134,18 @@
           <!-- Card milieu droite -->
           <div class="absolute right-0 top-[32%] w-[42%] h-[30%] rounded-2xl overflow-hidden
                       shadow-xl group cursor-default">
-            <img
-              src="/photo/hero/bibliotheque.jpeg"
-              alt="Aménagement intérieur d'une bibliothèque par Da Silva Leite"
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
+            <picture>
+              <source srcset="/photo/hero/bibliotheque.webp" type="image/webp" />
+              <img
+                src="/photo/hero/bibliotheque.jpeg"
+                alt="Aménagement intérieur d'une bibliothèque par Da Silva Leite"
+                width="534"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </picture>
             <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-3">
               <span class="text-white text-xs font-semibold">Aménagement intérieur</span>
             </div>
@@ -132,11 +154,18 @@
           <!-- Card large — bas -->
           <div class="absolute left-0 bottom-0 w-full h-[36%] rounded-2xl overflow-hidden
                       shadow-xl group cursor-default">
-            <img
-              src="/photo/hero/exterieur.jpeg"
-              alt="Peinture extérieure de façade ou vitrine dans les Yvelines par Da Silva Leite"
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
+            <picture>
+              <source srcset="/photo/hero/exterieur.webp" type="image/webp" />
+              <img
+                src="/photo/hero/exterieur.jpeg"
+                alt="Peinture extérieure de façade ou vitrine dans les Yvelines par Da Silva Leite"
+                width="534"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </picture>
             <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-4">
               <span class="text-white text-xs font-semibold">Peinture extérieure</span>
             </div>

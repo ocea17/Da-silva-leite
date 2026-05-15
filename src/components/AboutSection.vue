@@ -4,29 +4,45 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
 
         <!-- Visual -->
+        <!-- ✅ x:-40 retiré — opacity uniquement pour éviter le CLS -->
         <div
-          v-motion :initial="{ opacity:0, x:-40 }"
-          :visibleOnce="{ opacity:1, x:0, transition:{ duration:700 } }"
+          v-motion :initial="{ opacity:0 }"
+          :visibleOnce="{ opacity:1, transition:{ duration:700 } }"
           class="relative mx-auto w-full max-w-md lg:max-w-none"
         >
-        <!-- Photo principale -->
-        <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden group">
-          <img
-            src="/photo/about/salomon.jpeg"
-            alt="Chantier de peinture Da Silva Leite"
-            class="w-full h-full object-cover object-[center_16%] transition-transform duration-700 group-hover:scale-105"
-          />
-        </div>
+          <!-- Photo principale — Salomon -->
+          <div class="w-full aspect-[4/3] rounded-2xl overflow-hidden group">
+            <picture>
+              <!-- ✅ Source WebP correcte pour salomon -->
+              <source srcset="/photo/about/salomon.webp" type="image/webp" />
+              <img
+                src="/photo/about/salomon.jpeg"
+                alt="Salomon Leite, artisan peintre"
+                width="896"
+                height="672"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover object-[center_16%] transition-transform duration-700 group-hover:scale-105"
+              />
+            </picture>
+          </div>
 
-          <!-- Photo accent -->
+          <!-- Photo accent — Camion -->
           <div class="hidden sm:block absolute -bottom-5 -right-5 lg:-bottom-6 lg:-right-6
             w-44 h-44 sm:w-52 sm:h-52 lg:w-60 lg:h-60 rounded-2xl
             border-4 border-white shadow-xl overflow-hidden group">
-            <img
-              src="/photo/about/camion.png"
-              alt="Camion de l'entreprise Da Silva Leite"
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
+            <picture>
+              <source srcset="/photo/about/camion.webp" type="image/webp" />
+              <img
+                src="/photo/about/camion.png"
+                alt="Camion de l'entreprise Da Silva Leite"
+                width="534"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </picture>
           </div>
 
           <!-- Badge flottant -->
@@ -34,14 +50,14 @@
             bg-brand-vif text-white rounded-2xl p-4 sm:p-5
             shadow-xl shadow-brand-vif/40 animate-float">
             <div class="font-display text-3xl sm:text-4xl leading-none">2007</div>
-            <div class="text-[10px] sm:text-xs font-light mt-1 ">Année de création</div>
+            <div class="text-[10px] sm:text-xs font-light mt-1">Année de création</div>
           </div>
         </div>
 
         <!-- Texte -->
         <div
-          v-motion :initial="{ opacity:0, y:30 }"
-          :visibleOnce="{ opacity:1, y:0, transition:{ delay:200, duration:700 } }"
+          v-motion :initial="{ opacity:0 }"
+          :visibleOnce="{ opacity:1, transition:{ delay:200, duration:700 } }"
           class="mt-8 sm:mt-10 md:mt-0"
         >
           <div class="section-label mb-4">À propos</div>
@@ -51,8 +67,8 @@
             indépendant
           </h2>
           <p class="text-gray-500 text-sm leading-loose mb-6 sm:mb-8">
-            Basé dans les Yvelines et ses environs, j’interviens depuis 2007 auprès de particuliers en 
-            Île-de-France pour des travaux de peinture, rénovation et menuiserie. Mon engagement : un travail 
+            Basé dans les Yvelines et ses environs, j'interviens depuis 2007 auprès de particuliers en
+            Île-de-France pour des travaux de peinture, rénovation et menuiserie. Mon engagement : un travail
             soigné, une relation de confiance et un résultat à la hauteur de vos attentes.
           </p>
 
@@ -75,7 +91,7 @@
 </template>
 
 <script setup>
-import { Building2, CheckCircle, PhoneCall } from 'lucide-vue-next'
+import { PhoneCall } from 'lucide-vue-next'
 
 const values = [
   { text: 'Écoute et disponibilité' },
