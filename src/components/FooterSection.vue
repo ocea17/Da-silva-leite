@@ -5,7 +5,7 @@
       <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-white/8">
         <!-- Logo plus grand -->
         <RouterLink to="/">
-          <img :src="logoWhite" alt="Da Silva Leite" class="h-12 sm:h-16 w-auto" width="160" height="56" />
+          <img :src="logoWhite" alt="Da Silva Leite" class="h-7 sm:h-10 w-auto" width="160" height="56" />
         </RouterLink>
 
         <!-- Liens -->
