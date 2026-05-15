@@ -27,29 +27,11 @@
   <meta name="twitter:description" content="Artisan peintre dans les Yvelines depuis 2007. Devis gratuit." />
   <meta name="twitter:image"       content="https://peinturesld.oceaneleite.fr/og-image.png" />
 
-  <style>
-    @keyframes spin { to { transform: rotate(360deg) } }
-  </style>
+<style>
+  body { background-color: #1D3C24; }
+</style>
 </head>
-<body class="font-poppins bg-[#1D3C24] text-gray-800 antialiased">
-
-  <!-- Loader EN DEHORS de #app -->
-  <div id="app-loader" style="
-    position:fixed; inset:0;
-    background:#1D3C24;
-    display:flex; align-items:center; justify-content:center;
-    z-index:9999; transition:opacity 0.3s ease;
-  ">
-    <div style="
-      width:36px; height:36px;
-      border:3px solid rgba(109,195,25,0.25);
-      border-top-color:#6DC319;
-      border-radius:50%;
-      animation:spin 0.75s linear infinite;
-    "></div>
-  </div>
-
+<body class="font-poppins text-gray-800 antialiased">
   <div id="app"></div>
   <script type="module" src="/src/main.js"></script>
 </body>
-</html>
