@@ -10,12 +10,12 @@ export default defineConfig({
     }
   },
   build: {
+    cssCodeSplit: false,
     outDir: 'dist',
     rollupOptions: {
       output: {
-        manualChunks: {
-          vue: ['vue'],
-          lucide: ['lucide-vue-next']
+        manualChunks(id) {
+          if (id.includes('node_modules/vue')) return 'vue'
         }
       }
     }
