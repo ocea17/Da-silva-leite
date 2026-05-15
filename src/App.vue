@@ -1,7 +1,9 @@
 <template>
   <NavBar />
+<main class="min-h-screen">
   <RouterView />
-  <FooterSection />
+</main>
+<FooterSection />
 
   <!-- ─── Bouton retour en haut ─── -->
   <Transition name="scroll-top">

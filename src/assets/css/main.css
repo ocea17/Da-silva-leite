@@ -1,3 +1,43 @@
+@font-face {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/bebas-neue-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/poppins-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/poppins-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/poppins-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/poppins-700.woff2') format('woff2');
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -40,6 +80,16 @@
            sm:px-6 sm:py-3            /* ≥640px  */
            rounded-lg
            bg-brand-vif text-white font-semibold
+           transition-all duration-300
+           hover:bg-green-600 hover:-translate-y-0.5
+           hover:shadow-lg hover:shadow-brand-vif/30;
+  }
+  .btn-primary-black{
+    @apply inline-flex items-center gap-2
+           px-5 py-2.5 text-sm        /* mobile */
+           sm:px-6 sm:py-3            /* ≥640px  */
+           rounded-lg
+           bg-brand-vif text-black font-semibold
            transition-all duration-300
            hover:bg-green-600 hover:-translate-y-0.5
            hover:shadow-lg hover:shadow-brand-vif/30;

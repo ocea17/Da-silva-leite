@@ -90,24 +90,24 @@ const realisations = ref([
     title: 'Ravalement de façade',
     location: 'Mantes-la-Jolie (78)',
     category: 'Ravalement',
-    imgBefore: '/photo/realisations/peinture5_avant.jpeg',
-    imgAfter:  '/photo/realisations/peinture5_apres.jpeg',
+    imgBefore: '/photo/realisations/peinture5_avant.webp',
+    imgAfter:  '/photo/realisations/peinture5_apres.webp',
     showAfter: false
   },
   {
     title: 'Revetement moquette sur escalier',
     location: 'Versailles (78)',
     category: 'Revetement',
-    imgBefore: '/photo/realisations/escalier_avant.jpeg',
-    imgAfter:  '/photo/realisations/escalier_apres.jpeg',
+    imgBefore: '/photo/realisations/escalier_avant.webp',
+    imgAfter:  '/photo/realisations/escalier_apres.webp',
     showAfter: false
   },
   {
     title: 'Isolation par l\'extérieur',
     location: 'Poissy (78)',
     category: 'Isolation',
-    imgBefore: '/photo/realisations/renovation3_avant.jpeg',
-    imgAfter:  '/photo/realisations/renovation3_apres.jpeg',
+    imgBefore: '/photo/realisations/renovation3_avant.webp',
+    imgAfter:  '/photo/realisations/renovation3_apres.webp',
     imgPositionBefore: 'object-[center_80%]',
     showAfter: false
   },
@@ -115,24 +115,24 @@ const realisations = ref([
     title: 'Isolation par l\'extérieur',
     location: 'Les Mureaux (78)',
     category: 'Isolation',
-    imgBefore: '/photo/realisations/renovation7_avant.png',
-    imgAfter:  '/photo/realisations/renovation7_apres.jpeg',
+    imgBefore: '/photo/realisations/renovation7_avant.webp',
+    imgAfter:  '/photo/realisations/renovation7_apres.webp',
     showAfter: false
   },
   {
     title: 'Ravalement de façade',
     location: 'Rambouillet (78)',
     category: 'Ravalement',
-    imgBefore: '/photo/realisations/peinture6_avant.jpeg',
-    imgAfter:  '/photo/realisations/peinture6_apres.jpeg',
+    imgBefore: '/photo/realisations/peinture6_avant.webp',
+    imgAfter:  '/photo/realisations/peinture6_apres.webp',
     showAfter: false
   },
    {
     title: 'Aménagement d\'intérieur',
     location: 'Versailles (78)',
     category: 'Aménagement',
-    imgBefore: '/photo/realisations/renovation6_avant.jpeg',
-    imgAfter:  '/photo/realisations/renovation6_apres.jpeg',
+    imgBefore: '/photo/realisations/renovation6_avant.webp',
+    imgAfter:  '/photo/realisations/renovation6_apres.webp',
     imgPositionAfter:  'object-[center_10%]',
     showAfter: false
   },
